@@ -1,0 +1,30 @@
+.project-poster {
+  height: 100vh;
+  position: relative;
+  background-color: #073042;
+}
+
+.project-poster__back-image {
+  margin: auto;
+  background-image: url(../../../images/logo-practicum.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  max-width: 730px;
+  height: 320px;
+  position: absolute;
+  top: 156px;
+  left: 0;
+  right: 0;
+  bottom: 188px;
+}
+
+.project-poster__title {
+  margin: 102px 0;
+  font-family: inherit;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 1.16;
+  text-align: center;
+  letter-spacing: -0.04em;
+}

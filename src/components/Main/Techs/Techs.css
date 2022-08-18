@@ -1,0 +1,61 @@
+.project-technologies {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  /* max-height: 625px; */
+  background-color: #272727;
+  /* position: relative; */
+  /* border: 1px white solid; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* color: #fff; */
+  font-style: normal;
+  font-weight: 400;
+}
+.section-title__name_techs {
+  margin-top: 100px;
+}
+
+
+.section-name {
+  margin: 90px auto 26px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 1.16;
+  text-align: center;
+  /* letter-spacing: -0.04em; */
+}
+
+.section-table__description_techs {
+  margin: 0;
+  padding: 0;
+  max-width: 460px;
+  text-align: center;
+}
+
+.techs-cards {
+  margin: 100px auto;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.techs-cards__item {
+  margin: 0;
+  margin-right: 10px;
+  padding: 0;
+  width: 90px;
+  min-height: 60px;
+  background: #303030;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* .techs-cards__item:last-child{
+    margin-right: 0;
+} */
