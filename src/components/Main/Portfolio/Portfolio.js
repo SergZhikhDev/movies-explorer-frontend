@@ -4,7 +4,7 @@ import "./Portfolio.css";
 function Portfolio() {
   return (
     <section className="project-portfolio">
-      <h4 className="section-subtitle">Портфолио</h4>
+      <h3 className="section-subtitle">Портфолио</h3>
 
       {/* Лучше бы вставить нижний закоментированный блок, сохранилась бы общая стилизация */}
       {/* <h3 className="section-title__name section-title__name_techs">
@@ -14,16 +14,13 @@ function Portfolio() {
 
       <ul className="portfolio">
         <li className="portfolio__item">
-          <p className="portfolio__text">Статичный сайт</p>
-          <button type="button" className="portfolio__btn"></button>
+          <a className="portfolio__link" href="https://github.com/SergZhikhDev" target="_blank" rel="noreferrer" >Статичный сайт</a>
         </li>
         <li className="portfolio__item">
-          <p className="portfolio__text">Адаптивный сайт</p>
-          <button type="button" className="portfolio__btn"></button>
+          <a className="portfolio__link" href="https://github.com/SergZhikhDev" target="_blank" rel="noreferrer">Адаптивный сайт</a>
         </li>
         <li className="portfolio__item">
-          <p className="portfolio__text">Одностраничное приложение</p>
-          <button type="button" className="portfolio__btn"></button>
+          <a className="portfolio__link" href="https://github.com/SergZhikhDev" target="_blank" rel="noreferrer">Одностраничное приложение</a>
         </li>
       </ul>
     </section>

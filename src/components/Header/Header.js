@@ -1,48 +1,30 @@
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./Header.css";
+import Navigation from "../Navigation/Navigation";
+import Logo from "../Logo/Logo";
 
-import logo from "../../images/logo.svg";
 function Header() {
   return (
     <header className="header">
-      <Link className="navbar-btn logo" to="/">
-        <img src={logo} alt="логотип проекта Movies-Explorer" />
-      </Link>
-      <nav className="header__navbar btns-block_registered">
-        <ul className="btns-block__list navbar-btns_is-login">
-          <li className="btns-block__link films-btn" >
-            <NavLink to="/movies">
-              Фильмы
-            </NavLink>
-          </li >
-          <li className="btns-block__link saved-films-btn">
-            <NavLink
-             
-              to="saved-movies"
-            >
-              Соохранённые фильмы
-            </NavLink>
-          </li>
-        </ul>
+      <Logo />
 
-        <NavLink className="btns-block__link accaunt-btn" to="saved-movies">
-          {" "}
-        </NavLink>
-      </nav>
-
+      <Navigation />
       <div className="header__navbar btns-block btns-block_not-registered">
         <ul className="btns-block__list navbar-btns_not-login">
-          <li className="btns-block__link btns-block__link_signup-btn">
+          <li>
             <Link
-             
-              to="saved-movies"
+              className="btns-block__link btns-block__link_signup-btn"
+              to="signup"
             >
               Регистрация
             </Link>
           </li>
-          <li className="btns-block__link btns-block btns-block__link_login-btn">
-            <Link >
+          <li>
+            <Link
+              className="btns-block__link btns-block btns-block__link_login-btn"
+              to="login"
+            >
               Войти
             </Link>
           </li>

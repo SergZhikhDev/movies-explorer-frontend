@@ -3,38 +3,38 @@ import "./AboutProject.css";
 
 function AboutProject() {
   return (
-    <section className="project-description" id="project">
-        <h3 className="section-title__name">О проекте</h3>
+    <section className="project-description" id="about-project">
+        <h2 className="project-description__title section-title section-title_about-project">О проекте</h2>
         <hr className="line"></hr>
-      <article className="section-table">
-        <div className="section-table__stages">
-          <h4 className="section-table__subtitle">
+      <article className="table">
+        <div className="table__column">
+          <p className="table__subtitle">
             Дипломный проект включал 5 этапов
-          </h4>
-          <p className="section-table__description">
+          </p>
+          <p className="table__description">
             Составление плана, работу над бэкендом, вёрстку, добавление
             функциональности и финальные доработки.
           </p>
         </div>
-        <div className="section-table__time">
-          <h4 className="section-table__subtitle">
+        <div className="table__column">
+          <p className="table__subtitle">
             На выполнение диплома ушло 5 недель
-          </h4>
-          <p className="section-table__description">
+          </p>
+          <p className="table__description">
             У каждого этапа был мягкий и жёсткий дедлайн, которые нужно было
             соблюдать, чтобы успешно защититься.
           </p>
         </div>
       </article>
 
-      <article className="section-graph">
-        <div className="section-graph__back-end">
-          <p className="section-graph__time section-graph__time_back">1 неделя</p>
-          <p className="section-graph__description">Back-end</p>
+      <article className="graph">
+        <div className="graph__column graph__column_back-end">
+          <p className="graph__time graph__time_back">1 неделя</p>
+          <p className="graph__description">Back-end</p>
         </div>
-        <div className="section-graph__front-end">
-          <p className="section-graph__time section-graph__time_front">4 недели</p>
-          <p className="section-graph__description">Front-end</p>
+        <div className="graph__column graph__column_front-end">
+          <p className="graph__time graph__time_front">4 недели</p>
+          <p className="graph__description">Front-end</p>
         </div>
 
       </article>

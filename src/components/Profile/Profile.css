@@ -1,5 +1,97 @@
-.profile{
-    width: 100%;
-    height: 100vh;
-    background-color: rgb(244, 13, 171);
+.form {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+  width: 89%
+}
+
+.form__admin {
+  margin-top: 123px
+}
+
+.form__button {
+  font: normal 400 13px/1.23 Inter, Arial, sans-serif
+}
+
+.form__button_type_edit {
+  display: flex;
+  justify-content: center;
+  text-align: center
+}
+
+.form__button_out {
+  color: #EE3465;
+  text-align: center
+}
+
+.form__container {
+  margin: 74px auto 70px;
+  min-width: 410px;
+  /* text-align: center */
+}
+
+.form__footer {
+  display: flex;
+  flex-direction: column;
+  margin-top: 16px
+}
+
+.form__handlers {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  font: normal 400 13px/1.23 Inter, Arial, sans-serif;
+  margin-top: 221px
+}
+
+.form__heading {
+  color: #fff;
+  font: normal 500 24px/1.21 Inter, Arial, sans-serif;
+  text-align: center;
+}
+
+.form__input-container {
+  border: none;
+  margin-top: 123px
+}
+
+.form__item {
+  background-color: transparent;
+  color: #fff;
+  font: normal 400 11px/1.18 Inter, Arial, sans-serif;
+width: 100%;
+  text-align: right;
+  outline: none;
+  border: none;
+}
+
+.form__item:focus {
+  text-align: left;
+
+}
+
+
+.form__label {
+  display: flex;
+  font: normal 400 11px/1.18 Inter, Arial, sans-serif;
+  justify-content: space-between
+}
+
+.form__label_type_edit {
+  flex-direction: column;
+  width: 100%
+}
+
+.form__text {
+  font: normal 500 11px/1.18 Inter, Arial, sans-serif;
+  min-width: 141px;
+  text-align: left
+}
+
+
+.line_form {
+  border-color: #424242;
+  margin: 16px 0 17px;
+  width: 100%
 }

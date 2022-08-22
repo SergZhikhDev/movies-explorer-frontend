@@ -12,9 +12,15 @@ function Footer() {
         <p className="footer__copyright">© 2022.</p>
 
         <ul className="social-nets social-nets_footer">
-          <li className="social-nets__item social-nets__item_footer">Яндекс.Практикум</li>
-          <li className="social-nets__item social-nets__item_footer">Github</li>
-          <li className="social-nets__item social-nets__item_footer">Linkedin</li>
+          <li className="social-nets__item social-nets__item_footer">
+            <a href="https://github.com/SergZhikhDev" target="_blank" rel="noreferrer">Яндекс.Практикум</a>
+          </li>
+          <li className="social-nets__item social-nets__item_footer">
+            <a href="https://github.com/SergZhikhDev" target="_blank" rel="noreferrer">Github</a>
+          </li>
+          <li className="social-nets__item social-nets__item_footer">
+            <a href="https://github.com/SergZhikhDev" target="_blank" rel="noreferrer">Linkedin</a>
+          </li>
         </ul>
       </div>
     </footer>

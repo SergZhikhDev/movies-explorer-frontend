@@ -1,119 +1,91 @@
 .project-description {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  /* min-height: 608px; */
+  min-height: 608px;
   background-color: #000;
-  /* position: relative; */
-  /* border: 1px white solid; */
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: #fff;
+}
+
+.section-title {
+  margin: 110px auto 23px;
+  width: 89%;
+  font-family: inherit;
   font-style: normal;
   font-weight: 400;
-}
-
-
-
-.section-title__name {
-  margin: 110px auto 23px;
-  padding: 0;
-  width: 89%;
   font-size: 22px;
   line-height: 1.23;
-  /* letter-spacing: -0.04em; */
+  letter-spacing: -0.04em;
 }
-.line{
-  margin: 0;
-  padding: 0;
+.line {
   width: 89%;
-
-	height: 0;
-	border: none;
-	border-top: 1px solid #dadada;
+  border: none;
+  border-top: 1px solid #dadada;
 }
 
-.section-table {
+.table {
   margin-top: 70px;
-  padding: 0;
   width: 89%;
   display: flex;
   justify-content: space-between;
 }
 
-.section-table__stages {
+.table__column {
   width: 48%;
 }
 
-.section-table__subtitle {
-  margin: 0;
-  padding: 0;
-  /* font-family: 'Inter'; */
+.table__subtitle {
+  font-family: inherit;
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
   line-height: 1.2;
-  /* letter-spacing: -0.04em; */
-
-  /* color: #ffffff; */
+  letter-spacing: -0.04em;
 }
 
-.section-table__description {
+.table__description {
   width: 80%;
-  font-family: "Inter";
+  font-family: inherit;
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 1.43;
-  /* or 143% */
-}
-.section-table__time {
-  width: 48%;
 }
 
-.section-graph {
+.graph {
   margin: 110px auto;
-  padding: 0;
   width: 89%;
   display: flex;
-  /* justify-content: space-between; */
 }
-.section-graph__back-end {
-  width: 20%;
-}
-.section-graph__front-end {
-  width: 80%;
-}
-.section-graph__time {
-  margin: 0;
-  margin-bottom: 14px;
-  padding: 0;
-  min-height: 36px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.graph__column{
+  font-family: inherit;
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
   line-height: 1.21;
   text-align: center;
+
 }
-.section-graph__time_back {
+.graph__column_back-end {
+  width: 20%;
+}
+.graph__column_front-end {
+  width: 80%;
+}
+.graph__time {
+  margin-bottom: 14px;
+  min-height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.graph__time_back {
   color: #000;
   background-color: #3ddc84;
 }
-.section-graph__time_front {
+.graph__time_front {
   background-color: #303030;
 }
 
-.section-graph__description {
-  margin: 0;
-  padding: 0;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 1.21;
-  text-align: center;
+.graph__description {
   color: #8b8b8b;
 }

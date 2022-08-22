@@ -1,0 +1,31 @@
+
+.search__search-movie-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 13px;
+  margin-top: 69px;
+}
+
+.line_search {
+  width: 100%;
+}
+.search__movie {
+  width: 100%;
+  font-family: inherit;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 28px;
+  line-height: 1.21;
+  background-color: transparent;
+  color: #8b8b8b;
+}
+
+.search__button {
+  content: "";
+  background-image: url(../../../images/find.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 80px;
+  height: 34px;
+  background-color: #202020;
+}
