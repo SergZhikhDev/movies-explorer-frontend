@@ -5,7 +5,7 @@
 
 .form__container_type_auth {
   min-width: 396px;
-  margin: auto;
+  /* margin: auto; */
 }
 
 .form__error {

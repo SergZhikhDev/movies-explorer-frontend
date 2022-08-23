@@ -20,19 +20,10 @@
   margin-right: 20px;
 }
 
-.btns-block {
-  font-family: inherit;
-  font-style: normal;
-}
-.btns-block_registered {
-  /* display: none; */
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 1.29;
+.btns-block_type_registered {
+  font: normal 400 14px/1.29 Inter, Arial, sans-serif;
+
 }
 
-.btns-block_not-registered {
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 1.33;
-}
+
+

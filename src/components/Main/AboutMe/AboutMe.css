@@ -13,6 +13,7 @@
   display: flex;
   justify-content: space-between;
 }
+
 .owner__about-self {
   width: 53%;
   max-width: 600px;
@@ -21,41 +22,25 @@
   align-items: flex-start;
   justify-content: space-between;
 }
+
 .owner__name {
-  font-family: inherit;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 50px;
-  line-height: 1.16;
+  font: normal 400 50px/1.16 Inter, Arial, sans-serif;
   letter-spacing: -0.04em;
 }
 
 .owner__description {
   margin-top: 18px;
-  font-family: inherit;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 1.11;
+  font: normal 500 18px/1.11 Inter, Arial, sans-serif;
 }
 
 .owner__quote {
   margin-top: 26px;
-  font-family: inherit;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 1.57;
-  mix-blend-mode: normal;
+  font: normal 400 14px/1.57 Inter, Arial, sans-serif;
 }
 
 .social-nets {
   margin-top: 99px;
-  font-family: inherit;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 1.21;
+  font: normal 500 14px/1.21 Inter, Arial, sans-serif;
   display: flex;
 }
 

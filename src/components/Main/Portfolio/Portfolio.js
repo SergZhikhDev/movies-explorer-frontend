@@ -14,13 +14,13 @@ function Portfolio() {
 
       <ul className="portfolio">
         <li className="portfolio__item">
-          <a className="portfolio__link" href="https://github.com/SergZhikhDev" target="_blank" rel="noreferrer" >Статичный сайт</a>
+          <a className="portfolio__link" href="https://sergzhikhdev.github.io/how-to-learn/" target="_blank" rel="noreferrer" >Статичный сайт</a>
         </li>
         <li className="portfolio__item">
-          <a className="portfolio__link" href="https://github.com/SergZhikhDev" target="_blank" rel="noreferrer">Адаптивный сайт</a>
+          <a className="portfolio__link" href="https://sergzhikhdev.github.io/russian-travel/" target="_blank" rel="noreferrer">Адаптивный сайт</a>
         </li>
         <li className="portfolio__item">
-          <a className="portfolio__link" href="https://github.com/SergZhikhDev" target="_blank" rel="noreferrer">Одностраничное приложение</a>
+          <a className="portfolio__link" href="https://sergzhikhdev.github.io/sign-in" target="_blank" rel="noreferrer">Одностраничное приложение</a>
         </li>
       </ul>
     </section>

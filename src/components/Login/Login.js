@@ -22,8 +22,8 @@ function Login() {
             </h3>
 			<fieldset className="
             form__input-container
-            form__input-container_type_auth
-            form__input-container_type_auth_type_login">
+            form__input-container_type_auth_type_login
+           ">
 				<label className="
                 form__label
                 form__label_type_auth"> <span className="

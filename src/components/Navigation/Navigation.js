@@ -5,7 +5,7 @@ import "./Navigation.css";
 function Navigation() {
   return (
 
-   <nav className="header__navbar btns-block_registered">
+   <nav className="header__navbar btns-block_type_registered">
         <ul className="btns-block__list navbar-btns_is-login">
           <li className="btns-block__link films-btn" >
             <NavLink to="movies">
