@@ -1,9 +1,9 @@
-.form__admin_type_register {
+.form__admin_type_auth {
   margin: 70px 0
 }
 
 
-.form__container_type_register {
+.form__container_type_auth {
   min-width: 396px;
   margin: auto;
 }
@@ -22,37 +22,37 @@
   visibility: visible
 }
 
-.form__footer_type_register {
+.form__footer_type_auth {
   flex-direction: row;
   font: normal 400 14px/1.21 Inter, Arial, sans-serif;
   justify-content: center
 }
 
-.form__handlers_type_register {
+.form__handlers_type_auth {
   margin: 0
 }
 
-.form__heading_type_register {
+.form__heading_type_auth {
   margin: 40px 0;
   text-align: start
 }
 
-.form__input-container_type_register {
+.form__input-container_type_auth {
   margin: 0;
-  padding: 11px 0 123px;
+  padding: 0 0 123px;
 }
 
-.form__item_type_register {
+.form__item_type_auth {
   color: #FFF;
   font: normal 400 14px/1.21 Inter, Arial, sans-serif;
   text-align: start;
 }
 
-.form__item_el_email_type_register {
+.form__item_el_email_type_auth {
   font-weight: 500
 }
 
-.form__item_type_register_error {
+.form__item_type_auth_error {
   color: #EE3465
 }
 
@@ -60,12 +60,12 @@
   width: 100%
 }
 
-.form__label_type_register {
+.form__label_type_auth {
   align-items: flex-start;
   flex-direction: column
 }
 
-.form__label_type_register :focus-visible+.line_form {
+.form__label_type_auth :focus-visible+.line_form {
   border-color: #4285f4
 }
 
@@ -79,7 +79,7 @@
   margin-right: 6px
 }
 
-.form__text_type_register {
+.form__text_type_auth {
   color: #8B8B8B;
   font: normal 400 10px/1.2 Inter, Arial, sans-serif;
 
@@ -87,7 +87,7 @@
   width: 100%
 }
 
-.line_form_type_register {
+.line_form_type_auth {
   margin: 10px 0 6px
 }
 .form__button_el_button {

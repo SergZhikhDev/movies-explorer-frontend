@@ -7,7 +7,7 @@ import SavedMovies from "../SavedMovies/SavedMovies";
 import Profile from "../Profile/Profile";
 import Login from "../Login/Login";
 import Register from "../Register/Register";
-// import Footer from "../Footer/Footer";
+import NotFound from "../NotFound/NotFound";
 
 import "./App.css";
 function App() {
@@ -27,9 +27,9 @@ function App() {
         <Route exact path="/signin" component={Login} />
 
         <Route exact path="/signup" component={Register} />
-        {/* <Route path='*'>
+        <Route path='*'>
             <NotFound />
-          </Route> */}
+          </Route>
       </Switch>
       {/* <Footer /> */}
     </div>
