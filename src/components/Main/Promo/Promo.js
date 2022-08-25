@@ -4,7 +4,7 @@ import NavTab from "../NavTab/NavTab";
 
 function Promo() {
   return (
-    <section className="project-poster" id="poster">
+    <section className="project-poster sp" id="poster">
 
       <div className="project-poster__back-image">
       <h1 className="project-poster__title">

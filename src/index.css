@@ -48,3 +48,7 @@ li:last-child {
 ul {
   list-style: none;
 }
+/* padding для section (section-padding) */
+.sp{
+  padding: 0 70px;
+}

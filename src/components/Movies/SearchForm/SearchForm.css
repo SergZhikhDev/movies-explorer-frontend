@@ -1,3 +1,10 @@
+.search {
+  margin-top: 74px;
+  max-height: 217px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 
 .search__search-movie-container {
   display: flex;
@@ -9,6 +16,7 @@
 .line_search {
   width: 100%;
 }
+
 .search__movie {
   width: 100%;
   font-family: inherit;

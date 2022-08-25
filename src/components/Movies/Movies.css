@@ -1,15 +1,10 @@
 .movies {
-  margin-top: 74px;
+  /* margin-top: 74px; */
   background-color: #202020;
   display: flex;
   flex-direction: column;
 }
-.search {
-  max-height: 217px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
+
 
 .more {
   margin: 50px auto 80px;

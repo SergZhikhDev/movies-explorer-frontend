@@ -1,5 +1,5 @@
 
-
+/* 
 .btns-block__list {
   display: flex;
   flex-wrap: wrap;
@@ -7,7 +7,7 @@
   justify-content: center;
   align-items: center;
   border: none;
-}
+} */
 
 .btns-block__link {
   margin-right: 20px;
@@ -23,7 +23,6 @@
   padding: 8px 0;
   background-color: #3ddc84;
   min-width: 76px;
-  min-height: 32px;
   text-align: center;
   border-radius: 3px;
   color: #000;

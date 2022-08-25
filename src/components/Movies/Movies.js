@@ -9,7 +9,7 @@ function Movies() {
   return (
     <>
       <Header />
-      <main className="movies landing ">
+      <main className="movies sp ">
         <SearchForm />
         <MoviesCardList />
 

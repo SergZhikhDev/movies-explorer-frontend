@@ -1,3 +1,46 @@
 .main {
-  /* max-width: 1280px; */
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    flex-wrap: nowrap;
+
 }
+/* 
+@media screen and (max-width: 1280px) {
+
+    /* .project-poster,
+    .project-description, */
+    /* .project-tachnologies{ */
+     /* .project-owner
+ { 
+        min-height: auto;
+        float: none;
+        margin: 0;
+ }
+    /* } */
+
+/* 
+    .md-1,
+    .md-2,
+    .md-3,
+    .md-4 {
+        float: left;
+        margin: 0, 2.63157%;
+    }
+
+    .md-1 {
+        width: 19.738%;
+    }
+
+    .md-2 {
+        width: 22.375%;
+    }
+
+    .md-3 {
+        width: 67.125%;
+    }
+
+    .md-4 {
+        width: 94.739%;
+    } */
+ 

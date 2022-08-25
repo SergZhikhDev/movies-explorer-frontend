@@ -1,13 +1,9 @@
 .footer {
-  align-items: center;
   background-color: #202020;
   display: flex;
   flex-direction: column;
   max-width: 1280px;
   min-height: 172px;
-  width: 100%;
-
-
 }
 
 .line_footer {
@@ -20,7 +16,6 @@
   margin-top: 68px;
   padding-bottom: 20px;
   text-align: center;
-  width: 89%
 }
 
 .footer__container {
@@ -28,10 +23,30 @@
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
-  width: 89%
 }
 
 .social-nets_footer {
   font: normal 400 13px/1.23 Inter, Arial, sans-serif;
   margin-top: 0
+}
+
+@media screen and (max-width: 769px) {
+  .footer {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}
+
+@media screen and (max-width: 601px) {
+  .project-poster {
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+}
+
+@media screen and (max-width: 481px) {
+  .project-poster {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
 }

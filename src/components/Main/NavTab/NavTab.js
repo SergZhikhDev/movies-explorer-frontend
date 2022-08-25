@@ -1,4 +1,5 @@
 import React from "react";
+
 import "./NavTab.css";
 
 function NavTab() {
@@ -6,19 +7,13 @@ function NavTab() {
     <nav className="navtab">
       <ul className="btns-block__list navtab__btns">
         <li className="btns-block__link navtab-btn">
-          <a  href="#about-project">
-           О проекте
-          </a> 
+          <a href="#about-project">О проекте</a>
         </li>
         <li className="btns-block__link navtab-btn">
-          <a  href="#techs">
-            Технологии
-          </a>
+          <a href="#techs">Технологии</a>
         </li>
         <li className="btns-block__link navtab-btn">
-          <a  href="#student">
-            Студент
-          </a>
+          <a href="#student">Студент</a>
         </li>
       </ul>
     </nav>

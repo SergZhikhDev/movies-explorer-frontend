@@ -4,7 +4,7 @@ import avatar from "../../../images/owner.jpg";
 
 function AboutMe() {
   return (
-    <section className="project-owner" id="student">
+    <section className="project-owner sp" id="student">
       <h2 className="project-owner__title section-title section-title_owner">
         Студент
       </h2>
@@ -22,21 +22,38 @@ function AboutMe() {
           </blockquote>
           <ul className="social-nets">
             <li className="social-nets__item">
-              <a href="https://github.com/SergZhikhDev" target="_blank" rel="noreferrer">Github</a>
+              <a
+                href="https://github.com/SergZhikhDev"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Github
+              </a>
             </li>
             <li className="social-nets__item">
-              <a href="https://github.com/SergZhikhDev" target="_blank" rel="noreferrer">Linkedin</a>
+              <a href="https://github.com/SergZhikhDev"  target="_blank"  rel="noreferrer" >                Linkedin  </a>
             </li>
           </ul>
         </div>
-        <img
-          className="main-foto"
-          src={avatar}
-          alt="Фотография исполнителя проекта"
-        />
+
+        <img className="main-foto"  src={avatar} alt="Фотография исполнителя проекта" />
       </article>
+
+
+
+
     </section>
   );
 }
 
-export default AboutMe;
+export default AboutMe; 
+
+
+
+
+
+
+
+
+
+

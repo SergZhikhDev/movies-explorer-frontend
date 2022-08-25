@@ -3,7 +3,7 @@ import "./Portfolio.css";
 
 function Portfolio() {
   return (
-    <section className="project-portfolio">
+    <section className="project-portfolio sp">
       <h3 className="section-subtitle">Портфолио</h3>
 
       {/* Лучше бы вставить нижний закоментированный блок, сохранилась бы общая стилизация */}

@@ -1,7 +1,5 @@
 .saved-movies{
-    margin-top: 74px;
     background-color: #202020;
     display: flex;
     flex-direction: column;
-    /* width: 100%; */
 }
