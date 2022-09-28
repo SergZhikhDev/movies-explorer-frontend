@@ -22,6 +22,11 @@ button:hover,
   transition: opacity 0.3s linear;
 }
 
+*[disabled]:hover{
+  cursor: not-allowed;
+  opacity:1;
+}
+
 body {
   background-color: #202020;
   color: #fff;

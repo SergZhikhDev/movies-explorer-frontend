@@ -1,8 +1,9 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import "./MenuBtnsList.css";
+import "./MenuNavBtnsList.css";
 
-function MenuBtnsList() {
+
+function MenuNavBtnsList() {
   return (
     <nav
       className='
@@ -13,8 +14,8 @@ function MenuBtnsList() {
         '
     >
       <NavLink
-        exact
         to='/'
+        exact
         activeClassName='btns-block__link_active'
         className=' btns-block__link '
       >
@@ -22,20 +23,23 @@ function MenuBtnsList() {
       </NavLink>
       <NavLink
         to='movies'
+        exact
         activeClassName='btns-block__link_active'
         className=' btns-block__link '
       >
         Фильмы
       </NavLink>
       <NavLink
-        to='saved-movies'
-        activeClassName='btns-block__link_active'
+          to='saved-movies'
+          exact
+         activeClassName='btns-block__link_active'
         className=' btns-block__link '
       >
         Соохранённые фильмы
       </NavLink>
       <NavLink
         to='profile'
+        exact
         activeClassName='btns-block__link_active'
         className=' btns-block__link accaunt-btn '
       ></NavLink>
@@ -43,4 +47,4 @@ function MenuBtnsList() {
   );
 }
 
-export default MenuBtnsList;
+export default MenuNavBtnsList;

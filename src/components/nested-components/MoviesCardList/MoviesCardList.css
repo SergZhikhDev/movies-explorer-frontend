@@ -9,9 +9,17 @@
   align-items: center;
 
   grid-template-columns: repeat(auto-fit, 364px);
-  grid-auto-rows: 203px;
+  grid-auto-rows: 271px;
   justify-content: center;
-  gap: 144px 22px;
+  gap: 30px 24px;
 
 }
 
+.movies__attention {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 24px;
+  margin-top: 50px;
+  line-height: 35px;
+}

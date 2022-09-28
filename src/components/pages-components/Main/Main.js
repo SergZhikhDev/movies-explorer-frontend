@@ -6,7 +6,7 @@ import Promo from "../../nested-components/Promo/Promo";
 import AboutProject from "../../nested-components/AboutProject/AboutProject";
 import Techs from "../../nested-components/Techs/Techs";
 import Portfolio from "../../nested-components/Portfolio/Portfolio";
-import AboutMe from "../../nested-components//AboutMe/AboutMe";
+import AboutMe from "../../nested-components/AboutMe/AboutMe";
 import Footer from "../../nested-components/Footer/Footer";
 
 function Main() {

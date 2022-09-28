@@ -1,14 +1,24 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
+
 import "./logo.css";
 
-import { Link } from "react-router-dom";
 import logo from "../../../images/logo.svg";
 
 function Logo() {
+
+  const history = useHistory();
+
+  function handleClick() {
+    history.push("/");
+  }
   return (
-    <Link className=' logo' to='/'>
-      <img src={logo} alt='логотип проекта Movies-Explorer' />
-    </Link>
+    <img
+      className=' logo'
+      src={logo}
+      alt='логотип проекта Movies-Explorer'
+      onClick={handleClick}
+    />
   );
 }
 

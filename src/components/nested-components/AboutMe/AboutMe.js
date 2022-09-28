@@ -36,8 +36,8 @@ function AboutMe() {
                 target='_blank'
                 rel='noreferrer'
               >
-                {" "}
-                Linkedin{" "}
+                
+                Linkedin
               </a>
             </li>
           </ul>

@@ -1,6 +1,6 @@
 .project-poster {
   background-color: #073042;
-  height: calc(100vh - 25px);
+  height: 100vh;
   position: relative
 }
 

@@ -1,7 +1,15 @@
 import React from "react";
 import "./NotFound.css";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+
 function NotFound() {
+
+
+  const history = useHistory();
+function goToBack() {
+  
+  history.goBack()
+}
   return (
     <div className='page-notfound hp'>
       <div className='page-notfound__text'>
@@ -9,12 +17,10 @@ function NotFound() {
         <p className='page-notfound__subtitle'>Страница не найдена</p>
       </div>
 
-      <Link to='/'>
-        {" "}
-        <button className='page-notfound__back-button' type='button'>
+        <button className='page-notfound__back-button' type='button'  onClick={goToBack}>
           Назад
-        </button>{" "}
-      </Link>
+        </button>
+
     </div>
   );
 }

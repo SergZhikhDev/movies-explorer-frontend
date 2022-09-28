@@ -30,9 +30,9 @@
 /* данный медиазапрос реализован на время,
  пока не подключен js, для демонстрации наличия
  всех вариантов навигации */
-@media screen and (max-width: 1000px) {
+/* @media screen and (max-width: 769px) {
   .auth {
     display: none;
 
   }
-}
+} */

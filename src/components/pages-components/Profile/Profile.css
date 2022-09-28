@@ -107,6 +107,41 @@
   }
 }
 
+@media screen and (max-height: 769px) {
+
+  .form__main{
+    margin-bottom: 30px;
+  }
+  .form__input-container{
+
+  }
+.form__admin{
+  margin-top: 50px;
+}
+.form__handlers{
+  margin-top: 100px;
+}
+
+}
+
+@media screen and (max-height: 550px) {
+
+  .form__main{
+    margin-bottom: 15px;
+  }
+
+  .form__input-container{
+margin-top: 70px;
+  }
+.form__admin{
+  margin-top:20px;
+}
+.form__handlers{
+  margin-top: 30px;
+}
+
+}
+
 @media screen and (max-width: 601px) {}
 
 @media screen and (max-width: 481px) {}

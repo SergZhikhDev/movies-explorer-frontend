@@ -1,17 +1,32 @@
 import React from "react";
 import "./MoviesCardList.css";
+import Preloader from "../Preloader/Preloader";
 
 import MoviesCard from "../MoviesCard/MoviesCard";
 
-function MoviesCardList() {
+function MoviesCardList(props) {
   return (
-    <ul className='movies-list'>
-      <MoviesCard />
-      <MoviesCard />
-      <MoviesCard />
-      <MoviesCard />
-    </ul>
+    <>
+      {props.message ? (
+        <p className='movies__attention '>{props.message}</p>
+      ) : (
+        <ul className='movies-list'>
+          {props.isLoading ? (
+            <Preloader />
+          ) : (
+            props.films?.map((film) => {
+              return (
+                <MoviesCard
+                  film={film}
+                  key={film.id || film.movieId}
+                  handleClickLikeButton={props.handleClickLikeButton}
+                />
+              );
+            })
+          )}
+        </ul>
+      )}
+    </>
   );
 }
-
 export default MoviesCardList;
