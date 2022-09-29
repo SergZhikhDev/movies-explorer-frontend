@@ -1,148 +1,89 @@
-import { useState, useEffect } from "react";
+import{ useState, useEffect } from "react";
+import {regex} from "../utils/constants"
+
+
+
+
 
 export const useValidation = (value, validations) => {
-  //value-текущее значение импутов, validations- набор валидаторов
-  const [isEmpty, setEmpty] = useState(true); //проверка поля на пустоту пустота-true
-  const [minLengthError, setMinLengthError] = useState(false); //хранит состояние об ошибке есть ошибка-true
-  const [maxLengthError, setMaxLengthError] = useState(false);
-  const [emailError, setEmailError] = useState(false);
-  const [nameError, setNameError] = useState(false);
-  const [inputValid, setInputValid] = useState(false); // импуты изначально пустые и форма не валидна, кнопка серая
-  const [errors, setErrors] = useState({});
-
- 
- 
-  // добавит в свитч- кейс  текст ошибки
-
-  // console.log("valid", value.length, typeof value);
-  useEffect(() => {
-    for (const validation in validations) {
-      //validations - объект хранящий в себе инф. о видах валидации (isEmpty, maxLengthError, minLengthError, nameError, emailError)
-
-      switch (validation) {
-        case "isEmpty":
-          value ?
-           setEmpty(false) 
-           : setEmpty(true);
-          break;
-        case "minLength":
-          value.length < validations[validation] // ключ validation объекта validations
-            ? setMinLengthError(true)
-            : setMinLengthError(false);
-          break;
-        case "maxLength":
-          value.length > validations[validation]
-            ? setMaxLengthError(true)
-            : setMaxLengthError(false);
-          break;
-        case "isEmail":
-          const emailRegEx =
-            /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-          emailRegEx.test(String(value).toLowerCase())
-            ? setEmailError(false)
-            : setEmailError(true); // есть ошибка
-          break;
-        case "isName":
-          const nameRegEx = /^[a-z|а-яё|\s|-]+$/iu;
-          nameRegEx.test(String(value).toLowerCase())
-            ? setNameError(false)
-            : setNameError(true);
-          break;
-        default:
+    const [emptyError, setEmptyError] = useState(true); //true- поле пустое. есть ошибка
+    const [minLengthError, setMinLengthError] = useState(false); //true- длина меньше=> есть ошибка
+    const [maxLengthError, setMaxLengthError] = useState(false); //true- длина больше=> есть ошибка
+    const [emailError, setEmailError] = useState(false); //true- email не шаблон=> есть ошибка
+    const [nameError, setNameError] = useState(false); //true-name не шаблон=> есть ошибка
+    const [passwordError, setPasswordError] = useState(false); //true-password не шаблон=> есть ошибка
+  
+  
+    
+  
+    const [inputValid, setInputValid] = useState(false); // импуты изначально пустые и форма не валидна, кнопка серая
+  
+    useEffect(() => {
+      for (const validation in validations) {
+        switch (validation) {
+          case "isEmpty":
+            value ? setEmptyError(false) : setEmptyError(true);
+            break;
+          case "minLength":
+            value.length < validations[validation] 
+              ? setMinLengthError(true)
+              : setMinLengthError(false);
+            break;
+          case "maxLength":
+            value.length > validations[validation]
+              ? setMaxLengthError(true)
+              : setMaxLengthError(false);
+            break;
+          case "isEmail":
+           regex.email.test(String(value).toLowerCase())
+              ? setEmailError(false)
+              : setEmailError(true); // есть ошибка
+            break;
+          case "isName":
+            regex.name.test(String(value).toLowerCase())
+              ? setNameError(false)
+              : setNameError(true);
+            break;
+          case "isPass":
+            
+          regex.password.test(String(value).toLowerCase())
+              ? setPasswordError(false)
+              : setPasswordError(true);
+            break;
+          default:
+        }
       }
-    }
-  }, [validations, value]); // [value, validations] массив зависимостейб прт тзменении одной из них, срабатывает функция
-
-  useEffect(() => {
-    if (
-      isEmpty ||
-      maxLengthError ||
-      minLengthError ||
-      nameError ||
-      emailError
-    ) {
-      setInputValid(false);
-    } else {
-      setInputValid(true);
-    }
-  }, [isEmpty, maxLengthError, minLengthError, nameError, emailError]);
-
-  const validate = (event, name, value, valid) => {
-    //A function to validate each input values
-const erUsN = 'MIN 3 letters'
-console.log('isEmpty', isEmpty)
-    switch (name) {
-        case 'name':
-           
-            !   value ?   setErrors({
-                ...errors,
-                username:'пусто'
-            }):value.length < 3?  setErrors({
-                ...errors,
-                username:erUsN
-            }):value.length > 5? (setErrors({
-                ...errors,
-                username:'Max 5 letters'
-            })):(setErrors({
-                ...errors,
-                username:''
-            }))
-            break;
-    
-        case 'email':
-            if(
-                !new RegExp( /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/).test(value)
-            ){
-                setErrors({
-                    ...errors,
-                    email:'Enter a valid email address'
-                })
-            }else{
-
-                // let newObj = omit(errors, "email");
-                // setErrors(newObj);
-                
-            }
-        break;
-        
-        case 'password':
-        
-            !value?    setErrors({
-                ...errors,
-                password:'пусто'
-            }):value.length < 8?  setErrors({
-                ...errors,
-                password:'MIN 8 letters'
-            }):!new RegExp(  /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/).test(value)
-            ?(setErrors({
-                ...errors,
-                password:'Шаблон'
-            })):value.length > 16?(setErrors({
-                ...errors,
-                password:'Max 16 letters'
-            })):(setErrors({
-                ...errors,
-                password:''
-            }))
-        break;
-        
-        default:
-            break;
-    }
-    
-}
-
-
-  return {
-    isEmpty,
-    minLengthError,
-    maxLengthError,
-    nameError,
-    emailError,
-    inputValid,
-    errors,
-    validate
+    }, [value, validations]);
+  
+    useEffect(() => {
+      if (
+        emptyError ||
+        maxLengthError ||
+        minLengthError ||
+        nameError ||
+        emailError ||
+        passwordError
+      ) {
+        setInputValid(false);
+      } else {
+        setInputValid(true);
+      }
+    }, [
+      emptyError,
+      minLengthError,
+      maxLengthError,
+      nameError,
+      emailError,
+      passwordError,
+    ]);
+  
+    return {
+      emptyError,
+      minLengthError,
+      maxLengthError,
+      nameError,
+      emailError,
+      passwordError,
+      inputValid,
+    };
   };
-
-   
-};

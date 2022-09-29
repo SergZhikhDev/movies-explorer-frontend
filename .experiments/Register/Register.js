@@ -81,7 +81,7 @@ function Register(props) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    props.handleRegister({ name, email, password });
+    props.handleRegister( name, email, password );
   }
 
   return (
@@ -105,7 +105,7 @@ function Register(props) {
             form__heading
             form__heading_type_auth'
           >
-            Добро пожаловать!
+            Добро пожаловать!  WELL
           </h3>
           <fieldset
             className='

@@ -7,10 +7,7 @@ import Movies from "../pages-components/Movies/Movies";
 import SavedMovies from "../pages-components/SavedMovies/SavedMovies";
 import Profile from "../pages-components/Profile/Profile";
 import Login from "../pages-components/Login/Login";
-// import Register from "../pages-components/Register/Register";
-import { Register } from "../pages-components/Registeroriginal/Register";
-import { Form } from "../pages-components/Form/form";
-import { FormB } from "../pages-components/Bestform/FormB";
+import Register from "../pages-components/Register/Register";
 import NotFound from "../pages-components/NotFound/NotFound";
 import Attention from "../Attention/Attention";
 
@@ -21,10 +18,9 @@ import "./App.css";
 
 import { mainApi } from "../../utils/MainApi";
 import { moviesApi } from "../../utils/MoviesApi";
-import { attention_messages } from "../../utils/constants";
+import { messages } from "../../utils/constants"; 
 
 import LocalStorage from "../../utils/LocalStorage";
-import { messages } from "../../utils/constants";
 
 function App() {
   const updates = React.useRef(0);
@@ -123,7 +119,7 @@ function App() {
         setCurrentUser(user);
       })
       .catch(() => {
-        showAttention(attention_messages.error.get_user);
+        showAttention(messages.attentionMessages.error.get_user);
         throw new Error();
       })
       .finally(() => {
@@ -138,10 +134,10 @@ function App() {
       .then((res) => {
         setCurrentUser(res.data);
         // history.push("/");
-        showAttention(attention_messages.done.upd_profile);
+        showAttention(messages.attentionMessages.done.upd_profile);
       })
       .catch(() => {
-        showAttention(attention_messages.error.upd_profile);
+        showAttention(messages.attentionMessages.error.upd_profile);
         throw new Error();
       });
   }
@@ -181,7 +177,7 @@ function App() {
           throw new Error();
         })
       : mainApi.addLikeFilm(film, token).catch(() => {
-          showAttention(attention_messages.error.add_movie);
+          showAttention(messages.attentionMessages.error.add_movie);
           throw new Error();
         });
   }
@@ -251,14 +247,14 @@ function App() {
             isPreloader={isPreloader}
           />
 
-          <Route path='/signin'>
+          {/* <Route path='/signin'>
             <Login
               // loggedIn={!isLoggedIn}
               handleLogin={handleLogin}
               isPreloader={isPreloader}
             />
             
-          </Route>
+          </Route> */}
 
           <Route path='/signup'>
             <Register
@@ -268,7 +264,7 @@ function App() {
             />
           </Route>
 
-          <Route path='/trform'>
+          {/* <Route path='/trform'>
             <Form
               // loggedIn={!isLoggedIn}
               handleRegister={handleRegister}
@@ -282,6 +278,14 @@ function App() {
               isPreloader={isPreloader}
             />
           </Route>
+
+          <Route path='/register'>
+            <Register
+              // loggedIn={!isLoggedIn}
+              handleRegister={handleRegister}
+              isPreloader={isPreloader}
+            />
+          </Route> */}
 
 
           <Route path='*'>

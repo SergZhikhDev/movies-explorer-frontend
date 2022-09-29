@@ -2,20 +2,21 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Register.css";
-import Logo from "../../nested-components/Logo/Logo";
-import ErrorText from "../../nested-components/ErrorText/ErrorText";
-import { CurrentUserContext } from "../../../contexts/CurrentUserContext";
-import { useInput } from "../../../hooks/useInput";
-import useForm from "../../../hooks/useForm";
+import Logo from "../../src/components/nested-components/Logo/Logo";
+import ErrorText from "../../src/components/nested-components/ErrorText/ErrorText";
+import { CurrentUserContext } from "../../src/contexts/CurrentUserContext";
+import { useInput } from "../../src/hooks/useInput";
+import useForm from "../../src/hooks/useForm";
 import {
   configName,
   configEmail,
   configPassword,
-} from "../../../utils/constants";
+} from "../../src/utils/constants";
 
   export const Register= (props) => {
 
   const { isFetchError } = useContext(CurrentUserContext);
+
   const name = useInput("", configName); // параметр в юсстэйт дефолтное значение поля
   const email = useInput("", configEmail);
   const password = useInput("", configPassword);
@@ -25,8 +26,9 @@ import {
   //   props.handleRegister(name.state.value, password.state.value, email.state.value);
   // }
   const { handleChange, values, errors, handleSubmit } = useForm();
+  // console.log(name.isEmpty,'isEmpty')
 
-  console.log(errors)
+  // console.log(errors)
   return (
     <main
       className='form register sfp_type_reg hp'
@@ -40,7 +42,7 @@ import {
       <div className='form__container form__container_type_auth'>
         <form className='form__admin  form__admin_type_auth '>
           <h3 className='form__heading form__heading_type_auth'>
-            Добро пожаловать!
+            Добро !
           </h3>
           <fieldset className='form__input-container form__input-container_type_auth'>
             {/* **Name****Name****Name****Name****Name****Name****Name****Name****Name****Name****Name** */}
@@ -51,7 +53,9 @@ import {
                 // onChange={(e)=>name.onChange(e)}
                 onChange={handleChange}
                 value={values.username  }
-                onBlur={name.onBlur}
+                // value={name.value}
+
+                // onBlur={name.onBlur}
                 name='name'
                 type='text'
                 autoComplete='off'
@@ -63,6 +67,11 @@ import {
                   {/* { ( name.state.isVisited && errors.username &&
                   <ErrorText type='auth'>Поле {name.state.errorMessage}</ErrorText>  )} */}
                    { (  errors.username &&<ErrorText type='auth'> ошибка {errors.username}</ErrorText>  )}
+  {name.isDirty}
+
+
+
+
 
               
                
@@ -75,14 +84,16 @@ import {
                 className='form__item form__item_type_auth form__item_el_email form__item_el_email_type_auth'
                 type='email'
                 name='email'
-                onChange={(e) => email.onChange(e)}
-                value={email.value}
-                onBlur={(e) => email.onBlur(e)}
+                onChange={handleChange}
+                value={values.email  }
+                // onChange={(e) => email.onChange(e)}
+                // value={email.value}
+                // onBlur={(e) => email.onBlur(e)}
                 placeholder='Email'
               />
               <hr className='form__line  line  line_form  line_form_type_auth'></hr>
               <span className='form__error' id='error-userEmail'>
-                {!email.inputValid && (
+                {/* {!email.inputValid && (
                   <ErrorText type='auth'>{email.messageError}</ErrorText>
                 )}
 
@@ -91,7 +102,7 @@ import {
                 )}
                 {email.isVisited && email.emailError && (
                   <ErrorText type='auth'>некорректная формат EMAIL </ErrorText>
-                )}
+                )} */}
             
               </span>
             </label>
@@ -103,14 +114,16 @@ import {
                 className='form__item form__item_type_auth form__item_type_auth_error form__item_el_name form__item_el_name_type_auth'
                 type='password'
                 name='password'
-                onChange={(e) => password.onChange(e)}
-                value={password.value}
-                onBlur={(e) => password.onBlur(e)}
+                onChange={handleChange}
+                value={values.password  }
+                // onChange={(e) => password.onChange(e)}
+                // value={password.value}
+                // onBlur={(e) => password.onBlur(e)}
                 placeholder='Password'
               />
               <hr className='form__line line line_form line_form_type_auth'></hr>
               <span className='form__error ' id='error-userPassword'>
-                {!password.inputValid && (
+                {/* {!password.inputValid && (
                   <ErrorText type='auth'>{password.messageError}</ErrorText>
                 )}
 
@@ -122,7 +135,7 @@ import {
                 )}
                 {password.isVisited && password.maxLengthError && (
                   <ErrorText type='auth'>некорректная max длина </ErrorText>
-                )}
+                )} */}
               </span>
             </label> 
           </fieldset>
@@ -133,9 +146,9 @@ import {
               <button
                 type='submit'
                 className='form__button form__button_el_button form__text'
-                disabled={
-                  !name.inputValid || !email.inputValid || !password.inputValid
-                }
+                // disabled={
+                //   !name.inputValid || !email.inputValid || !password.inputValid
+                // }
               >
                 Зарегистрироваться
               </button>
