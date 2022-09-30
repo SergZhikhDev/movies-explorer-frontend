@@ -1,4 +1,5 @@
 
+
 const regex = {
   name: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
   email: /^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i,
@@ -10,9 +11,9 @@ const config = {
   email: { isEmpty: true, isEmail: true },
   password: { isEmpty: true, minLength: 5, maxLength: 12 },
 };
-const messages = {
+const reports = {
   errorMessages: {
-    emptyError: `Это обязательное для заполнения поле`,
+    emptyError: `Это  обязательное для заполнения поле`,
     minLengthError: `Минимальное количество символов поля-`,
     maxLengthError: `Максимальное количество символов поля-`,
     nameError: `'Имя может состоять только из букв, пробелов и "-"'`,
@@ -64,7 +65,7 @@ const base_url = "https://api.nomoreparties.co";
 const short_movie = 40;
 
 export {
-  messages,
+  reports,
   base_url,
   count,
   short_movie,
@@ -72,3 +73,17 @@ export {
   regex,
   config,
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+

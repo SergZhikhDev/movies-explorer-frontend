@@ -8,7 +8,7 @@ import SearchForm from "../../nested-components/SearchForm/SearchForm";
 import MoviesCardList from "../../nested-components/MoviesCardList/MoviesCardList";
 
 import { filterFilms } from '../../../utils/filterFilms'
-import { messages, short_movie } from '../../../utils/constants'
+import { reports, short_movie } from '../../../utils/constants'
 
 function SavedMovies({ requestLikeFilms, handleClickLikeButton, setIsShowMenu, searchQuerySavedMoviesLocal }) {
   const [likedFilms, setLikedFilms] = useState(null)
@@ -29,7 +29,7 @@ function SavedMovies({ requestLikeFilms, handleClickLikeButton, setIsShowMenu, s
         hideErrorMessage()
       })
       .catch(() => {
-        showErrorMessage(messages.ERROR)
+        showErrorMessage(reports.apiMessages.error)
       })
       .finally(() => {
         stopLoader()
@@ -39,7 +39,7 @@ function SavedMovies({ requestLikeFilms, handleClickLikeButton, setIsShowMenu, s
     const films = filterFilms(likedFilms, short_movie, values)
     setDisplayedFilms(films)
 
-    films?.length ? hideErrorMessage() : showErrorMessage(messages.NOT_FOUND)
+    films?.length ? hideErrorMessage() : showErrorMessage(reports.apiMessages.not_found)
   }
 
   function handleDeleteFilm(filmId) {

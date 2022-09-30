@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
-// import { regex } from "../utils/constants";
-import { useConstant } from "./useConstants";
-// import { reports } from "../utils/constants";
+import { regex } from "../utils/constants";
+import { reports } from "../utils/constants";
 
 export const useValidation = (value, validations) => {
   // const [emptyError, setEmptyError] = useState(true);
@@ -10,9 +9,6 @@ export const useValidation = (value, validations) => {
   // const [emailError, setEmailError] = useState(false);
   // const [nameError, setNameError] = useState(false);
   // const [passwordError, setPasswordError] = useState(false);
-const{regex,reports,onClack}=useConstant(value, validations)
-
-
 
   const [errorsKit, setErrorsKit] = useState({
     errors: {
@@ -27,6 +23,7 @@ const{regex,reports,onClack}=useConstant(value, validations)
      message:''
     },
   });
+ 
 
   const [inputValid, setInputValid] = useState(false); // импуты изначально пустые и форма не валидна, кнопка серая
 
@@ -49,7 +46,7 @@ const{regex,reports,onClack}=useConstant(value, validations)
      value.length  !==0   &&  value.length < validations[validation]
           ? setErrorsKit((errorsKit => ({
             errors: { ...errorsKit.errors, minLengthError: true },
-            messages: { ...errorsKit.messages, message:reports.errorMessages.minLengthError },
+            messages: { ...errorsKit.messages, message:reports.errorMessages.minLengthError + validations.minLength},
           })))
         // :  value.length === 0   &&  value.length < validations[validation]
         // ?setErrorsKit((errorsKit) => ({
@@ -108,7 +105,7 @@ const{regex,reports,onClack}=useConstant(value, validations)
         default:
       }
     }
-  }, [value, validations,errorsKit.errors.emptyError,errorsKit.errors.minLengthError,]);
+  }, [value, validations,errorsKit.errors.emptyError,errorsKit.errors.minLengthError]);
 
    useEffect(() => {
         if (
@@ -169,6 +166,5 @@ const{regex,reports,onClack}=useConstant(value, validations)
   return {
     errorsKit,
     inputValid,
-    onClack,
   };
 };

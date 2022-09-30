@@ -18,7 +18,7 @@ import "./App.css";
 
 import { mainApi } from "../../utils/MainApi";
 import { moviesApi } from "../../utils/MoviesApi";
-import { messages } from "../../utils/constants"; 
+import { reports } from "../../utils/constants"; 
 
 import LocalStorage from "../../utils/LocalStorage";
 
@@ -119,7 +119,7 @@ function App() {
         setCurrentUser(user);
       })
       .catch(() => {
-        showAttention(messages.attentionMessages.error.get_user);
+        showAttention(reports.attentionMessages.error.get_user);
         throw new Error();
       })
       .finally(() => {
@@ -134,10 +134,10 @@ function App() {
       .then((res) => {
         setCurrentUser(res.data);
         // history.push("/");
-        showAttention(messages.attentionMessages.done.upd_profile);
+        showAttention(reports.attentionMessages.done.upd_profile);
       })
       .catch(() => {
-        showAttention(messages.attentionMessages.error.upd_profile);
+        showAttention(reports.attentionMessages.error.upd_profile);
         throw new Error();
       });
   }
@@ -173,11 +173,11 @@ function App() {
   function handleClickLikeButton(filmId, film) {
     return filmId
       ? mainApi.deleteLikeFilm(filmId, token).catch(() => {
-          showAttention(Attention-messages.error.delete_movie);
+          showAttention(Attention-reports.error.delete_movie);
           throw new Error();
         })
       : mainApi.addLikeFilm(film, token).catch(() => {
-          showAttention(messages.attentionMessages.error.add_movie);
+          showAttention(reports.attentionMessages.error.add_movie);
           throw new Error();
         });
   }

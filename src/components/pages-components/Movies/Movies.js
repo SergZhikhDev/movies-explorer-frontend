@@ -9,7 +9,7 @@ import MoviesCardList from "../../nested-components/MoviesCardList/MoviesCardLis
 import { filterFilms } from "../../../utils/filterFilms";
 import { formatLikedFilms, setLike } from "../../../utils/likes";
 import {
-  messages,
+  reports,
   count,
   breackpoint,
   short_movie,
@@ -59,7 +59,7 @@ function Movies({
       saveFilmsLocal(films);
       setFiltredFilms(films);
 
-      films?.length ? hideErrorMessage() : showErrorMessage(messages.not_found);
+      films?.length ? hideErrorMessage() : showErrorMessage(reports.apiMessages.not_found);
     }
   }, [allFilms, queryValues]);
 
@@ -79,7 +79,7 @@ function Movies({
         hideErrorMessage();
       })
       .catch(() => {
-        showErrorMessage(messages.ERROR);
+        showErrorMessage(reports.apiMessages.error);
       })
       .finally(() => {
         stopLoader();
@@ -94,7 +94,7 @@ function Movies({
         hideErrorMessage();
       })
       .catch(() => {
-        showErrorMessage(messages.ERROR);
+        showErrorMessage(reports.apiMessages.error);
       })
       .finally(() => {
         stopLoader();

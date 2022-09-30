@@ -9,10 +9,13 @@ import { config } from "../../../utils/constants";
 
 import { useInputt } from "../../../hooks/useInput";
 
+
 function Register(props) {
+
   const name = useInputt("", config.name);
   const email = useInputt("", config.email);
   const password = useInputt("", config.password);
+   
 
   const onSubmit = (e) => {
     e.preventDefault(e);
@@ -68,6 +71,7 @@ function Register(props) {
                 type='text'
                 autoComplete='off'
                 placeholder='Имя'
+              
                 required
               />
 
@@ -83,9 +87,9 @@ function Register(props) {
                 form__error'
                 id='error-userName'
               >
-                {name.isDirty && name.errors.message && (
-                  <ErrorText type='auth'> {name.errors.message}</ErrorText>
-                )}
+                 {name.isDirty && name.errorsKit.messages.message && (
+                  <ErrorText type='auth'>{name.errorsKit.messages.message}</ErrorText>
+                )} 
               </span>
             </label>
             <label
@@ -106,6 +110,7 @@ function Register(props) {
                 value={email.value}
                 onClick={email.onClick}
                 onBlur={email.onBlur}
+                
                 name='email'
                 type='email'
                 autoComplete='off'
