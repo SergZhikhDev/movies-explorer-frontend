@@ -2,7 +2,7 @@ import React from "react";
 import "./AboutMe.css";
 import avatar from "../../../images/owner.jpg";
 
-function AboutMe() {
+export const AboutMe = () => {
   return (
     <section className='project-owner sp' id='student'>
       <h2 className='project-owner__title section-title section-title_owner'>
@@ -35,7 +35,6 @@ function AboutMe() {
                 target='_blank'
                 rel='noreferrer'
               >
-                
                 Linkedin
               </a>
             </li>
@@ -50,6 +49,4 @@ function AboutMe() {
       </article>
     </section>
   );
-}
-
-export default AboutMe;
+};

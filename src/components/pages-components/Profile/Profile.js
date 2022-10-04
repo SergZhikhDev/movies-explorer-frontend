@@ -6,7 +6,7 @@ import Header from "../../nested-components/Header/Header";
 import { CurrentUserContext } from "../../../contexts/CurrentUserContext";
 import "./Profile.css";
 
-import ErrorText from "../../nested-components/ErrorText/ErrorText";
+import {ErrorText} from "../../nested-components/ErrorText/ErrorText";
 import { config } from "../../../utils/constants";
 
 import { useInputt } from "../../../hooks/useInput";

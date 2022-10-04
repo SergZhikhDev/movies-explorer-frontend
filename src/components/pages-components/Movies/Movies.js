@@ -42,6 +42,7 @@ function Movies({
     setCountViewFilms();
     addResizeEvent();
     return () => removeResizeEvent();
+    // eslint-disable-next-line
   }, []);
 
   // Загрузить фильмы с локального хранилища
@@ -49,6 +50,7 @@ function Movies({
     if (likedFilms && !isLoading) {
       loadFilmsLocal();
     }
+    //eslint-disable-next-line
   }, [likedFilms, isLoading]);
 
   // Отфильтровать фильмы
@@ -60,6 +62,7 @@ function Movies({
 
       films?.length ? hideErrorMessage() : showErrorMessage(reports.apiMessages.not_found);
     }
+    // eslint-disable-next-line
   }, [allFilms, queryValues]);
 
   // Отобразить фильмы
@@ -68,6 +71,7 @@ function Movies({
       const films = setLike(filtredFilms, likedFilms);
       setDisplayedFilms([...films.slice(0, startCountFilms)]);
     }
+    // eslint-disable-next-line
   }, [filtredFilms, startCountFilms]);
 
   function getLikeFilms() {

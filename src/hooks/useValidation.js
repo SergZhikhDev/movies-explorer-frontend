@@ -29,7 +29,7 @@ export const useValidation = (value, validations) => {
 
   const errMess = reports.errorMessages;
 
-  const [inputValid, setInputValid] = useState(false); // импуты изначально пустые и форма не валидна, кнопка серая
+  const [inputValid, setInputValid] = useState(false);
   useEffect(() => {
     for (const validation in validations) {
       switch (validation) {
@@ -221,6 +221,7 @@ export const useValidation = (value, validations) => {
         default:
       }
     }
+    // eslint-disable-next-line
   }, [
     value,
     validations,

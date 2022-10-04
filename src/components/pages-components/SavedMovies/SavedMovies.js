@@ -18,10 +18,10 @@ function SavedMovies({ requestLikeFilms, handleClickLikeButton, setIsShowMenu, s
   const [isLoading, setIsLoading] = useState(false)
   useEffect(() => {
     getLikeFilms()
+    // eslint-disable-next-line
   }, [])// ничего не добавлятьб будет ошибка CORS
 
   function getLikeFilms() {
-    console.log(555)
     startLoader()
     requestLikeFilms()
       .then(films => {

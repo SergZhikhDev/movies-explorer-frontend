@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import "./Login.css";
 import Logo from "../../nested-components/Logo/Logo";
-import ErrorText from "../../nested-components/ErrorText/ErrorText";
+import {ErrorText} from "../../nested-components/ErrorText/ErrorText";
 import { CurrentUserContext } from "../../../contexts/CurrentUserContext";
 import { config } from "../../../utils/constants";
 

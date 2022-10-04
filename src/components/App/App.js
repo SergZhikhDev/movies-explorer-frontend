@@ -9,9 +9,9 @@ import Movies from "../pages-components/Movies/Movies";
 import SavedMovies from "../pages-components/SavedMovies/SavedMovies";
 import Profile from "../pages-components/Profile/Profile";
 import Login from "../pages-components/Login/Login";
-import {Register} from "../pages-components/Register/Register";
+import { Register } from "../pages-components/Register/Register";
 import NotFound from "../pages-components/NotFound/NotFound";
-import {Attention} from "../Attention/Attention";
+import { Attention } from "../Attention/Attention";
 
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
@@ -23,15 +23,11 @@ import { reports } from "../../utils/constants";
 import LocalStorage from "../../utils/LocalStorage";
 
 export const App = () => {
-  // Состояние меню
-  // const [isShowMenu, setIsShowMenu] = useState(false);
   // Данные текущего пользоволетя
   const [currentUser, setCurrentUser] = useState({});
   // Токен
   const [token, setToken] = useState("");
-  // Лоадер кнопки Войти/Зарегестрироваться
-  // const [loaderButton, setLoaderButton] = useState(false);
-  // Состояние входа в профиль
+
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   // Состояние ответа сервера
   const [isFetchError, setIsFetchError] = useState(false);
@@ -54,22 +50,27 @@ export const App = () => {
     "search-query-saved-movies",
     { film: "", short: false }
   );
-  // useEffect(() => {
-  //   document.body.style.overflow = isShowMenu ? "hidden" : "";
-  // }, [isShowMenu]);
 
   useEffect(() => {
     setIsFetchError(false);
-    // setIsShowMenu(false);
   }, [location]);
 
   useEffect(() => {
     handleLoginToken();
     // eslint-disable-next-line
   }, []);
+  // Вход по токену
+  const handleLoginToken = () => {
+    const token = jwtLocal.load();
+    if (token) {
+      setToken(token);
+      getUserInfo(token);
+    } else {
+      setIsPreloader(false);
+    }
+  };
 
   const handleRegister = (name, email, password) => {
-    // setLoaderButton(true);
     setIsFetchError(false);
     mainApi
       .signup({ name, email, password })
@@ -80,13 +81,10 @@ export const App = () => {
         setIsFetchError(true);
         showAttention(reports.apiMessages.error);
       })
-      .finally(() => {
-        // setLoaderButton(false);
-      });
+      .finally(() => {});
   };
 
   const handleLogin = (email, password) => {
-    // setLoaderButton(true);
     setIsFetchError(false);
     mainApi
       .signin({ email, password })
@@ -101,9 +99,7 @@ export const App = () => {
       .catch(() => {
         setIsFetchError(true);
       })
-      .finally(() => {
-        // setLoaderButton(false);
-      });
+      .finally(() => {});
   };
 
   function requestAllFilms() {
@@ -133,7 +129,7 @@ export const App = () => {
       .updateUserInfo({ name, email }, token)
       .then((res) => {
         setCurrentUser(res.data);
-        // history.push("/");
+        history.push("/");
         showAttention(reports.attentionMessages.done.upd_profile);
       })
       .catch(() => {
@@ -156,17 +152,6 @@ export const App = () => {
     setCurrentUser({});
     clearLocal();
     history.push("/");
-  }
-
-  // Вход по токену
-  function handleLoginToken() {
-    const token = jwtLocal.load();
-    if (token) {
-      setToken(token);
-      getUserInfo(token);
-    } else {
-      setIsPreloader(false);
-    }
   }
 
   // Изменение флажка у фильма
@@ -194,48 +179,37 @@ export const App = () => {
       setIsActiveAttention(false);
     }, 3000);
   }
-  // убрать лишние exact
   return (
     <div className='App page'>
       <CurrentUserContext.Provider
-        value={{ /*loaderButton,*/ isLoggedIn, currentUser, isFetchError }}
+        value={{ isLoggedIn, currentUser, isFetchError }}
       >
         <Switch>
-          <Route
-            exact
-            path='/'
-            component={Main}
-            // setIsShowMenu={setIsShowMenu}
-          />
+          <Route exact path='/' component={Main} />
 
           <ProtectedRoute
-            exact
             path='/movies'
             loggedIn={isLoggedIn}
             component={Movies}
             requestAllFilms={requestAllFilms}
             handleClickLikeButton={handleClickLikeButton}
             requestLikeFilms={requestLikeFilms}
-            // setIsShowMenu={setIsShowMenu}
             isPreloader={isPreloader}
             filmsLocal={filmsLocal}
             searchQueryMoviesLocal={searchQueryMoviesLocal}
           />
 
           <ProtectedRoute
-            exact
             path='/saved-movies'
             component={SavedMovies}
             isLoggedIn={isLoggedIn}
             handleClickLikeButton={handleClickLikeButton}
             requestLikeFilms={requestLikeFilms}
-            // setIsShowMenu={setIsShowMenu}
             isPreloader={isPreloader}
             searchQuerySavedMoviesLocal={searchQuerySavedMoviesLocal}
           ></ProtectedRoute>
 
           <ProtectedRoute
-            exact
             path='/profile'
             loggedIn={isLoggedIn}
             component={Profile}
@@ -246,43 +220,15 @@ export const App = () => {
           />
 
           <Route path='/signin'>
-            <Login
-              // loggedIn={!isLoggedIn}
-              handleLogin={handleLogin}
-              isPreloader={isPreloader}
-            />
+            <Login handleLogin={handleLogin} isPreloader={isPreloader} />
           </Route>
 
           <Route path='/signup'>
             <Register
-              // loggedIn={!isLoggedIn}
               handleRegister={handleRegister}
               isPreloader={isPreloader}
             />
           </Route>
-
-          {/* <Route path='/loader'>
-            <Preloader
-              // loggedIn={!isLoggedIn}
-              handleRegister={handleRegister}
-              isPreloader={isPreloader}
-            />
-          </Route> */}
-          {/*  <Route path='/formb'>
-            <FormB
-              // loggedIn={!isLoggedIn}
-              handleRegister={handleRegister}
-              isPreloader={isPreloader}
-            />
-          </Route>
-
-          <Route path='/register'>
-            <Register
-              // loggedIn={!isLoggedIn}
-              handleRegister={handleRegister}
-              isPreloader={isPreloader}
-            />
-          </Route> */}
 
           <Route path='*'>
             <NotFound />

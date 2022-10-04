@@ -5,7 +5,7 @@ import "./SearchForm.css";
 
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 
-import ErrorText from "../ErrorText/ErrorText";
+import {ErrorText} from "../ErrorText/ErrorText";
 
 import { useFormWithValidation } from "../../../hooks/useFormWithValidation";
 
@@ -23,6 +23,8 @@ function SearchForm({ searchFilms, searchQueryLocal }) {
     setValues(searchQuery);
     if (searchQuery) setIsValid(true);
   }, [searchQueryLocal, setIsValid, setValues]);
+
+
   function onChangeCheckbox(evt) {
     const newValues = { ...values, short: evt.target.checked };
 
@@ -43,6 +45,7 @@ function SearchForm({ searchFilms, searchQueryLocal }) {
     }
   }
 
+  console.log(values.film)
   return (
     <section className='search'>
       <form className='search__form' onSubmit={handleSubmitForm} noValidate>
@@ -55,19 +58,20 @@ function SearchForm({ searchFilms, searchQueryLocal }) {
               placeholder='Фильм'
               required
               id='search-movie'
-              value={values.film}
+              value={values.film || ''}
               onChange={handleChange}
             />
           </fieldset>
           <fieldset className='search__input-container search__input-container_btn submit-button'>
             <button type='submit' className='search__label submit-button'>
-              <input
+              <div
                 type='submit'
                 className='submit-button__invisible invisible'
               />
-              <input className='search__button ' />
+              <div className='search__button ' />
             </button>
           </fieldset>
+
         </div>
         <hr className='search__line line line_search'></hr>
         <div className='search__error'>

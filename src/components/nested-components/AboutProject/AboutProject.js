@@ -1,7 +1,7 @@
 import React from "react";
 import "./AboutProject.css";
 
-function AboutProject() {
+export const AboutProject = () => {
   return (
     <section className='project-description sp' id='about-project'>
       <h2 className='project-description__title section-title section-title_about-project'>
@@ -17,7 +17,7 @@ function AboutProject() {
           </p>
         </div>
         <div className='table__column table__column_time'>
-          <p className='table__subtitle'>На выполнение диплома ушло 5 недель</p>     
+          <p className='table__subtitle'>На выполнение диплома ушло 5 недель</p>
           <p className='table__description'>
             У каждого этапа был мягкий и жёсткий дедлайн, которые нужно было
             соблюдать, чтобы успешно защититься.
@@ -37,6 +37,4 @@ function AboutProject() {
       </article>
     </section>
   );
-}
-
-export default AboutProject;
+};

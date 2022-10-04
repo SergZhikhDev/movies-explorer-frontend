@@ -4,7 +4,7 @@ import "./Register.css";
 
 import Logo from "../../nested-components/Logo/Logo";
 import { Link } from "react-router-dom";
-import ErrorText from "../../nested-components/ErrorText/ErrorText";
+import {ErrorText} from "../../nested-components/ErrorText/ErrorText";
 import { config } from "../../../utils/constants";
 
 import { useInputt } from "../../../hooks/useInput";
