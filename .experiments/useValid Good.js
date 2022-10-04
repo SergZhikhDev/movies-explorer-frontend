@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { regex } from "../utils/constants";
-import { reports } from "../utils/constants";
+import { regex } from "../src/utils/constants";
+import { reports } from "../src/utils/constants";
 
 export const useValidation = (value, validations) => {
   // const [emptyError, setEmptyError] = useState(true);

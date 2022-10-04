@@ -1,33 +1,19 @@
 import { useState } from "react";
 
 export const useConstant = (value, validations) => {
-  const [nameField, setNameField] = useState('');
-console.log(value, validations)
+  const [nameField, setNameField] = useState("");
   const onClack = (e) => {
     setNameField(e.target.name);
-  };
-  //
-
-  const regex = {
-    name: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-    email: /^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i,
-    password: /^[a-zA-Z\d]{5,8}$/,
-  };
-
-  const config = {
-    name: { isEmpty: true, isName: true, minLength: 3, maxLength: 8 },
-    email: { isEmpty: true, isEmail: true },
-    password: { isEmpty: true, minLength: 5, maxLength: 12 },
   };
 
   const reports = {
     errorMessages: {
-      emptyError: `Это  обязательное !!!!   ${nameField} !!! для заполнения поле${validations.minLength}`,
-      minLengthError: `Минимальное количество символов поля-`,
-      maxLengthError: `Максимальное количество символов поля-`,
-      nameError: `'Имя может состоять только из букв, пробелов и "-"'`,
+      emptyError: `Поле ${nameField} должно быть заполнено!`,
+      minLengthError: `Минимальное количество символов поля "${nameField}" - ${validations.minLength}`,
+      maxLengthError: `Максимальное количество символов поля "${nameField}" - ${validations.maxLength}`,
+      nameError: `Имя может состоять только из букв, пробелов и знака"-"`,
       emailError: `Неправильный формат e-mail`,
-      passwordError: `Пароль должен состоять из буквб цифр`,
+      passwordError: `Пароль должен содержать: 1-заглавную букву, 1-прописную букву, 1-спецсимвол,1-цифру, без пробелов`,
     },
     apiMessages: {
       not_found: "Ничего не найдено",
@@ -49,42 +35,9 @@ console.log(value, validations)
     },
   };
 
-  const count = {
-    narrow_screen: {
-      add: 2,
-      start: 5,
-    },
-    normal_screen: {
-      add: 2,
-      start: 8,
-    },
-    wide_screen: {
-      add: 3,
-      start: 12,
-    },
-  };
-
-  const breackpoint = {
-    two: 1000,
-    one: 700,
-  };
-
-  const base_url = "https://api.nomoreparties.co";
-
-  const short_movie = 40;
-
   return {
-    //   name,
-    //   email,
-    //   password,
     onClack,
     nameField,
     reports,
-    base_url,
-    count,
-    short_movie,
-    breackpoint,
-    regex,
-    config,
   };
 };

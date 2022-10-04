@@ -1,12 +1,11 @@
-import React from "react";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState }from "react";
 import { useHistory } from "react-router-dom";
 import "./MoviesCard.css";
 
-import { formatDuration } from "../../../utils/formatDuration";
 import { base_url } from "../../../utils/constants";
+import { formatDuration } from "../../../utils/formatDuration";
 
-function MoviesCard({ film, handleClickLikeButton }) {
+export const MoviesCard =({ film, handleClickLikeButton })=> {
   const [filmId, setFilmId] = useState("");
   const isSavedMovies = useHistory().location.pathname === "/saved-movies";
   const imageUrl =
@@ -15,7 +14,7 @@ function MoviesCard({ film, handleClickLikeButton }) {
   useEffect(() => {
     const filmId = film._id;
     if (filmId) setFilmId(filmId);
-  }, []);
+  }, [film._id]);
 
   function clickLikeButton() {
     if (isSavedMovies) {
@@ -55,11 +54,20 @@ function MoviesCard({ film, handleClickLikeButton }) {
           onClick={clickLikeButton}
         ></button>
       </div>
-      <a href={film.trailerLink} target='_blank' rel='noreferrer'>
+      <a
+        href={film.trailerLink}
+        target='_blank'
+        rel='noreferrer'
+        className='card-movie__link'
+      >
+        <span
+          title={`Название: ${film.nameRU}. \n\nОписание: ${film.description} \n\nСнято: ${film.country} ${film.year}г.`}
+          className='card-movie__overlay'
+        ></span>
+
         <img className='card-movie__image' src={imageUrl} alt={film.nameRU} />
       </a>
     </li>
   );
 }
 
-export default MoviesCard;

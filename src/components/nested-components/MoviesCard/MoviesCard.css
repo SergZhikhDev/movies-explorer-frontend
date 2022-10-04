@@ -12,8 +12,6 @@
 
 .card-movie__description {
   padding: 14px;
-
-
   display: flex;
   justify-content: flex-start;
   height: 68px;
@@ -24,6 +22,24 @@
   width: 100%;
 }
 
+
+
+.card-movie__overlay {
+  width: 100%;
+  height: 100%;
+  display: block;
+  opacity: 0;
+  position: absolute;
+  background-image: url("../../../images/play.svg");
+  filter: drop-shadow(0 0 20px rgba(0, 0, 0, 0.5));
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100px;
+}
+
+.card-movie__overlay:hover {
+  opacity: 1;
+}
 .card-movie__title {
   margin-bottom: 9px;
   width: 280px;
@@ -40,7 +56,9 @@
   display: flex;
 }
 
-
+.card-movie__link{
+  position: relative;
+}
 .card-movie__image{
   height: 203px;
 }

@@ -7,17 +7,17 @@ import Logo from "../../src/components/nested-components/Logo/Logo";
 import { Link } from "react-router-dom";
 import ErrorText from "../../src/components/nested-components/ErrorText/ErrorText";
 
-import { useFormWithValidation } from "../../src/hooks/useFormWithValidation";
-import { validation_config } from "../../src/utils/constants";
+// import { useFormWithValidation } from "../../src/hooks/useFormWithValidation";
+// import { validation_config } from "../../src/utils/constants";
 import { CurrentUserContext } from "../../src/contexts/CurrentUserContext";
 
 function Login(props) {
   const { isFetchError } = useContext(CurrentUserContext);
 
-  const { values, errors, handleChange } = useFormWithValidation(
-    { email: "", password: "" },
-    validation_config.login
-  );
+  // const { values, errors, handleChange } = useFormWithValidation(
+  //   { email: "", password: "" },
+  //   validation_config.login
+  // );
 
   const handleSubmit = (e) => {
     e.preventDefault();

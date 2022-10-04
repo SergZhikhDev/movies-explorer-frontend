@@ -22,14 +22,13 @@ function SearchForm({ searchFilms, searchQueryLocal }) {
 
     setValues(searchQuery);
     if (searchQuery) setIsValid(true);
-  }, []);
+  }, [searchQueryLocal, setIsValid, setValues]);
   function onChangeCheckbox(evt) {
+    const newValues = { ...values, short: evt.target.checked };
 
-    const newValues = { ...values, short: evt.target.checked }
-
- handleChange(evt)
- searchFilms(newValues)
-  searchQueryLocal.save(newValues)
+    handleChange(evt);
+    searchFilms(newValues);
+    searchQueryLocal.save(newValues);
   }
 
   function handleSubmitForm(evt) {
@@ -57,7 +56,7 @@ function SearchForm({ searchFilms, searchQueryLocal }) {
               required
               id='search-movie'
               value={values.film}
-              onInput={handleChange}
+              onChange={handleChange}
             />
           </fieldset>
           <fieldset className='search__input-container search__input-container_btn submit-button'>
@@ -71,15 +70,17 @@ function SearchForm({ searchFilms, searchQueryLocal }) {
           </fieldset>
         </div>
         <hr className='search__line line line_search'></hr>
-             <div className="search__error"> {isSearchError && (
-        <ErrorText type='search'>Нужно ввести ключевое слово</ErrorText>
-      )}</div>
+        <div className='search__error'>
+          {" "}
+          {isSearchError && (
+            <ErrorText type='search'>Нужно ввести ключевое слово</ErrorText>
+          )}
+        </div>
 
-   
         <FilterCheckbox
-      onChangeCheckbox={onChangeCheckbox}
-      searchFilms={searchFilms}
-      searchQueryLocal={searchQueryLocal}
+          onChangeCheckbox={onChangeCheckbox}
+          searchFilms={searchFilms}
+          searchQueryLocal={searchQueryLocal}
         />
       </form>
     </section>

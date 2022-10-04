@@ -29,7 +29,9 @@
   justify-content: center;
   text-align: center
 }
-
+.form__errors{
+  height: 100px;
+}
 
 .form__main {
   margin: 74px auto 70px;
@@ -119,7 +121,7 @@
   margin-top: 50px;
 }
 .form__handlers{
-  margin-top: 100px;
+  /* margin-top: 100px; */
 }
 
 }

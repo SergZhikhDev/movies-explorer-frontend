@@ -15,8 +15,8 @@ function MenuResponce() {
       <label className='res-menu__btn' htmlFor='res-menu__toggle'>
         <span></span>
       </label>
-      {isLoggedIn &&<MenuNavBtnsList />}
-         {!isLoggedIn &&<MenuAuthBtnsList />}
+      {isLoggedIn && <MenuNavBtnsList />}
+      {!isLoggedIn && <MenuAuthBtnsList />}
     </div>
   );
 }

@@ -16,5 +16,3 @@ function Header() {
 }
 
 export default Header;
-
-{/* <meta name='viewport' content='width=device-width, initial-scale=1'></meta>; */}

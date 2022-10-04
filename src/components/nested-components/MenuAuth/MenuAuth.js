@@ -1,13 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import "./MenuAuth.css";
-import MenuAuthBtnsList from  "../MenuAuthBtnsList/MenuAuthBtnsList"
+import MenuAuthBtnsList from "../MenuAuthBtnsList/MenuAuthBtnsList";
 
 function MenuAuth() {
   return (
     <div className='auth navbar '>
-    <MenuAuthBtnsList />
-        </div>
+      <MenuAuthBtnsList />
+    </div>
   );
 }
 

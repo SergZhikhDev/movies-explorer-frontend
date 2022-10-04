@@ -5,7 +5,7 @@ import "./SavedMovies.css";
 import Header from "../../nested-components/Header/Header";
 import Footer from "../../nested-components/Footer/Footer";
 import SearchForm from "../../nested-components/SearchForm/SearchForm";
-import MoviesCardList from "../../nested-components/MoviesCardList/MoviesCardList";
+import {MoviesCardList} from "../../nested-components/MoviesCardList/MoviesCardList";
 
 import { filterFilms } from '../../../utils/filterFilms'
 import { reports, short_movie } from '../../../utils/constants'
@@ -18,7 +18,7 @@ function SavedMovies({ requestLikeFilms, handleClickLikeButton, setIsShowMenu, s
   const [isLoading, setIsLoading] = useState(false)
   useEffect(() => {
     getLikeFilms()
-  }, [])
+  }, [])// ничего не добавлятьб будет ошибка CORS
 
   function getLikeFilms() {
     console.log(555)

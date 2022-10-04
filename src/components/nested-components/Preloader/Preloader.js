@@ -1,3 +1,4 @@
+import './Preloader.css'
 const Preloader = () => {
     return (
       <div className="preloader">

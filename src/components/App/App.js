@@ -2,36 +2,35 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { Route, Switch, useHistory, useLocation } from "react-router-dom";
 
+import "./App.css";
+
 import Main from "../pages-components/Main/Main";
 import Movies from "../pages-components/Movies/Movies";
 import SavedMovies from "../pages-components/SavedMovies/SavedMovies";
 import Profile from "../pages-components/Profile/Profile";
 import Login from "../pages-components/Login/Login";
-import Register from "../pages-components/Register/Register";
+import {Register} from "../pages-components/Register/Register";
 import NotFound from "../pages-components/NotFound/NotFound";
-import Attention from "../Attention/Attention";
+import {Attention} from "../Attention/Attention";
 
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
-import "./App.css";
-
 import { mainApi } from "../../utils/MainApi";
 import { moviesApi } from "../../utils/MoviesApi";
-import { reports } from "../../utils/constants"; 
+import { reports } from "../../utils/constants";
 
 import LocalStorage from "../../utils/LocalStorage";
 
-function App() {
-  const updates = React.useRef(0);
+export const App = () => {
   // Состояние меню
-  const [isShowMenu, setIsShowMenu] = useState(false);
+  // const [isShowMenu, setIsShowMenu] = useState(false);
   // Данные текущего пользоволетя
   const [currentUser, setCurrentUser] = useState({});
   // Токен
   const [token, setToken] = useState("");
   // Лоадер кнопки Войти/Зарегестрироваться
-  const [loaderButton, setLoaderButton] = useState(false);
+  // const [loaderButton, setLoaderButton] = useState(false);
   // Состояние входа в профиль
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   // Состояние ответа сервера
@@ -55,13 +54,13 @@ function App() {
     "search-query-saved-movies",
     { film: "", short: false }
   );
-  useEffect(() => {
-    document.body.style.overflow = isShowMenu ? "hidden" : "";
-  }, [isShowMenu]);
+  // useEffect(() => {
+  //   document.body.style.overflow = isShowMenu ? "hidden" : "";
+  // }, [isShowMenu]);
 
   useEffect(() => {
     setIsFetchError(false);
-    setIsShowMenu(false);
+    // setIsShowMenu(false);
   }, [location]);
 
   useEffect(() => {
@@ -69,24 +68,25 @@ function App() {
     // eslint-disable-next-line
   }, []);
 
-  const handleRegister = ( name, email, password ) => {
-    setLoaderButton(true);
+  const handleRegister = (name, email, password) => {
+    // setLoaderButton(true);
     setIsFetchError(false);
     mainApi
       .signup({ name, email, password })
       .then(() => {
-        handleLogin( email, password );
+        handleLogin(email, password);
       })
       .catch(() => {
         setIsFetchError(true);
+        showAttention(reports.apiMessages.error);
       })
       .finally(() => {
-        setLoaderButton(false);
+        // setLoaderButton(false);
       });
   };
 
-  const handleLogin = ( email, password ) => {
-    setLoaderButton(true);
+  const handleLogin = (email, password) => {
+    // setLoaderButton(true);
     setIsFetchError(false);
     mainApi
       .signin({ email, password })
@@ -102,7 +102,7 @@ function App() {
         setIsFetchError(true);
       })
       .finally(() => {
-        setLoaderButton(false);
+        // setLoaderButton(false);
       });
   };
 
@@ -128,7 +128,7 @@ function App() {
   }
 
   // Обновить данные пользовотеля
-  function handleUpdateUser({ name, email }) {
+  function handleUpdateUser(name, email) {
     return mainApi
       .updateUserInfo({ name, email }, token)
       .then((res) => {
@@ -173,7 +173,7 @@ function App() {
   function handleClickLikeButton(filmId, film) {
     return filmId
       ? mainApi.deleteLikeFilm(filmId, token).catch(() => {
-          showAttention(Attention-reports.error.delete_movie);
+          showAttention(Attention - reports.error.delete_movie);
           throw new Error();
         })
       : mainApi.addLikeFilm(film, token).catch(() => {
@@ -194,18 +194,18 @@ function App() {
       setIsActiveAttention(false);
     }, 3000);
   }
-// убрать лишние exact
+  // убрать лишние exact
   return (
     <div className='App page'>
       <CurrentUserContext.Provider
-        value={{ loaderButton, isLoggedIn, currentUser, isFetchError }}
+        value={{ /*loaderButton,*/ isLoggedIn, currentUser, isFetchError }}
       >
         <Switch>
           <Route
             exact
             path='/'
             component={Main}
-            setIsShowMenu={setIsShowMenu}
+            // setIsShowMenu={setIsShowMenu}
           />
 
           <ProtectedRoute
@@ -216,7 +216,7 @@ function App() {
             requestAllFilms={requestAllFilms}
             handleClickLikeButton={handleClickLikeButton}
             requestLikeFilms={requestLikeFilms}
-            setIsShowMenu={setIsShowMenu}
+            // setIsShowMenu={setIsShowMenu}
             isPreloader={isPreloader}
             filmsLocal={filmsLocal}
             searchQueryMoviesLocal={searchQueryMoviesLocal}
@@ -229,12 +229,10 @@ function App() {
             isLoggedIn={isLoggedIn}
             handleClickLikeButton={handleClickLikeButton}
             requestLikeFilms={requestLikeFilms}
-            setIsShowMenu={setIsShowMenu}
+            // setIsShowMenu={setIsShowMenu}
             isPreloader={isPreloader}
             searchQuerySavedMoviesLocal={searchQuerySavedMoviesLocal}
-          >
-     
-          </ProtectedRoute>
+          ></ProtectedRoute>
 
           <ProtectedRoute
             exact
@@ -247,14 +245,13 @@ function App() {
             isPreloader={isPreloader}
           />
 
-          {/* <Route path='/signin'>
+          <Route path='/signin'>
             <Login
               // loggedIn={!isLoggedIn}
               handleLogin={handleLogin}
               isPreloader={isPreloader}
             />
-            
-          </Route> */}
+          </Route>
 
           <Route path='/signup'>
             <Register
@@ -264,14 +261,14 @@ function App() {
             />
           </Route>
 
-          {/* <Route path='/trform'>
-            <Form
+          {/* <Route path='/loader'>
+            <Preloader
               // loggedIn={!isLoggedIn}
               handleRegister={handleRegister}
               isPreloader={isPreloader}
             />
-          </Route>
-          <Route path='/formb'>
+          </Route> */}
+          {/*  <Route path='/formb'>
             <FormB
               // loggedIn={!isLoggedIn}
               handleRegister={handleRegister}
@@ -287,16 +284,15 @@ function App() {
             />
           </Route> */}
 
-
           <Route path='*'>
             <NotFound />
           </Route>
         </Switch>
       </CurrentUserContext.Provider>
-      <Attention messageAttention={messageAttention} isActiveAttention={isActiveAttention} />
+      <Attention
+        messageAttention={messageAttention}
+        isActiveAttention={isActiveAttention}
+      />
     </div>
   );
-}
-
-export default App;
-// Если разместить несколько компонентов Route внутри Switch, отрисуется только один из них.
+};

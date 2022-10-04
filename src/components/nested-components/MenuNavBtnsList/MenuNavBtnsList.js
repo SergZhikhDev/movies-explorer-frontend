@@ -2,7 +2,6 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import "./MenuNavBtnsList.css";
 
-
 function MenuNavBtnsList() {
   return (
     <nav
@@ -30,9 +29,9 @@ function MenuNavBtnsList() {
         Фильмы
       </NavLink>
       <NavLink
-          to='saved-movies'
-          exact
-         activeClassName='btns-block__link_active'
+        to='saved-movies'
+        exact
+        activeClassName='btns-block__link_active'
         className=' btns-block__link '
       >
         Соохранённые фильмы

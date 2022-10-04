@@ -6,7 +6,6 @@ import "./logo.css";
 import logo from "../../../images/logo.svg";
 
 function Logo() {
-
   const history = useHistory();
 
   function handleClick() {

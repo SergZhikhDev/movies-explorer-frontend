@@ -2,9 +2,9 @@ import React from "react";
 import "./MoviesCardList.css";
 import Preloader from "../Preloader/Preloader";
 
-import MoviesCard from "../MoviesCard/MoviesCard";
+import {MoviesCard} from "../MoviesCard/MoviesCard";
 
-function MoviesCardList(props) {
+export const MoviesCardList=(props)=> {
   return (
     <>
       {props.message ? (
@@ -29,4 +29,4 @@ function MoviesCardList(props) {
     </>
   );
 }
-export default MoviesCardList;
+

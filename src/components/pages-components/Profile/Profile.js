@@ -1,192 +1,158 @@
-// import React from "react";
-// import { Route, Switch, Redirect, useHistory } from "react-router-dom";
-// import { useContext, useState, useEffect } from "react";
-// import { Link } from "react-router-dom";
+import React from "react";
+import { useContext, useState, useCallback } from "react";
+import { Link } from "react-router-dom";
 
-// import Header from "../../nested-components/Header/Header";
-// import { CurrentUserContext } from "../../../contexts/CurrentUserContext";
+import Header from "../../nested-components/Header/Header";
+import { CurrentUserContext } from "../../../contexts/CurrentUserContext";
+import "./Profile.css";
 
-// import "./Profile.css";
+import ErrorText from "../../nested-components/ErrorText/ErrorText";
+import { config } from "../../../utils/constants";
 
-// import { useFormWithValidation } from "../../../hooks/useFormWithValidation";
-// import { validation_params } from "../../../utils/constants";
-// function Profile({ handleUpdateUser, currentUser, onSignOut, setIsShowMenu }) {
-//   const startValues = {
-//     name: currentUser.name,
-//     email: currentUser.email,
-//   };
-//   const [disableInput, setDisableInput] = useState(true);
+import { useInputt } from "../../../hooks/useInput";
 
-//   const { values, isValid, handleChange, setIsValid } =
-//     useFormWithValidation(startValues);
+function Profile({ handleUpdateUser, currentUser, onSignOut }) {
+  const { isFetchError } = useContext(CurrentUserContext);
+  const [disableInput, setDisableInput] = useState(true);
+  const name = useInputt("", config.name);
+  const email = useInputt("", config.email);
+  const isValidForm = name.readyForUpdate && email.readyForUpdate;
 
-//   // Проверить что данные изменились и валидны
-//   useEffect(() => {
-//     const isValidName = validation_params.regex.name.test(values.name);
-//     const isValidEmail = validation_params.regex.email.test(values.email);
-//     const isChangeName = values.name !== currentUser.name;
-//     const isChangeEmail = values.email !== currentUser.email;
+  const handleUpdUser = (e) => {
+    e.preventDefault();
+    setDisableInput(false);
+  };
 
-//     isValidName && isValidEmail && (isChangeName || isChangeEmail)
-//       ? setIsValid(true)
-//       : setIsValid(false);
-//   }, [values]);
+  function signOut() {
+    onSignOut();
+  }
 
-//   function clickUpdateButton(e) {
-//     e.preventDefault();
+  function onSubmit(e) {
+    e.preventDefault();
+    handleUpdateUser(name.value, email.value);
+  }
+  const callbackRef = useCallback((inputElement) => {
+    if (inputElement) {
+      inputElement.focus();
+    }
+  }, []);
 
-//     handleUpdateUser(values).then(() => setIsValid(false));
-//   }
+  return (
+    <main
+      className=' form form_type_profile sfp hp'
+      noValidate
+      onSubmit={onSubmit}
+    >
+      <div className=' form__header_type_profile'>
+        <Header />
+      </div>
+      <div className='form__main form__main_type_profile '>
+        <form className='form__admin form__admin_type_profile '>
+          <div className='form__main-container'>
+            <h3 className=' form__title'>{`Привет, ${currentUser.name}!`}</h3>
+            <fieldset className=' form__input-container form__input-container_ctrl_texts'>
+              <label
+                className='
+                form__label'
+              >
+                <span className='form__text'>Имя</span>
+                {disableInput ? (
+                  <input
+                    className='form__item form__item_el_name'
+                    placeholder={currentUser.name}
+                    value={name.value}
+                    disabled={disableInput}
+                  />
+                ) : (
+                  <input
+                    className='form__item form__item_el_name'
+                    onChange={name.handleChange}
+                    value={name.value}
+                    onClick={name.onClick}
+                    onBlur={name.onBlur}
+                    name='name'
+                    type='text'
+                    autoComplete='off'
+                    placeholder={currentUser.name}
+                    required
+                    ref={callbackRef}
+                  />
+                )}
+              </label>
+              <hr className='form__line line line_form'></hr>
 
-//   const handleChangeData = (e) => {
-//     e.preventDefault();
-//     setDisableInput(false);
-//   };
-//   function signOut() {
-//     console.log("signOut");
+              <label className='form__label'>
+                <span className='form__text'>Email</span>
+                <input
+                  className='form__item form__item_el_email'
+                  onChange={email.handleChange}
+                  value={email.value}
+                  onClick={email.onClick}
+                  onBlur={email.onBlur}
+                  name='email'
+                  type='email'
+                  autoComplete='off'
+                  placeholder={currentUser.email}
+                  required
+                  disabled={disableInput}
+                />
+              </label>
+            </fieldset>
+          </div>
 
-//     onSignOut();
-//   }
-//   // function handleEditSubmit(e) {
-//   //   e.preventDefault();
-//   //   onUpdateUser({
-//   //     name: currentUser.name,
-//   //     email: currentUser.email
-//   //   });
-//   // }
+          <fieldset className='form__handlers '>
+            <span className='form__errors'>
+              {name.isDirty && (
+                <ErrorText type='auth'>{name.errorMessages}</ErrorText>
+              )}
+              {email.isDirty && (
+                <ErrorText type='auth'>{email.errorMessages}</ErrorText>
+              )}
 
-//   // console.log("currentUser", currentUser);
-//   // console.log("disableInput", disableInput);
-//   // console.log("isValid", isValid);
+              {email.needTwoChanges && (
+                <ErrorText type='auth'>{email.needTwoChanges}</ErrorText>
+              )}
+            </span>
+            <label className='form__label form__label_el_handlers'>
+              <input type='submit' className='form__item invisible' />
 
-//   return (
-//     <main
-//       className=' form form_type_profile sfp hp'
-//       id='#accaunt'
-//       // onSubmit={handleEditSubmit}
-//       // disabled={!isValid}
-//     >
-//       <div className=' form__header_type_profile'>
-//         <Header />
-//       </div>
-//       <div className='form__main form__main_type_profile '>
-//         <form className='form__admin form__admin_type_profile '>
-//           <div className='form__main-container' onSubmit={clickUpdateButton}>
-//             <h3 className=' form__title'>{`Привет, ${currentUser.name}!`}</h3>
-//             <fieldset className=' form__input-container form__input-container_ctrl_texts'>
-//               <label
-//                 className='
-//                 form__label'
-//               >
-//                 <span className='form__text'>Имя</span>
-//                 <input
-//                   type='text'
-//                   value={values.name || ""}
-//                   name='name'
-//                   disabled={disableInput}
-//                   onChange={handleChange}
-//                   className='form__item form__item_el_name'
-//                   id='userName'
-//                   placeholder='Имя'
-//                   required
-//                 />
-//               </label>
-//               <hr className='form__line line line_form'></hr>
+              {disableInput ? (
+                <button
+                  type='button'
+                  className='form__button  form__button_el_button form__button_type_edit form__text'
+                  onClick={handleUpdUser}
+                >
+                  Редактировать
+                </button>
+              ) : (
+                <button
+                  type='submit'
+                  disabled={!isValidForm}
+                  className='form__button form__button_el_button form__button_type_edit form__text'
+                >
+                  Сохранить
+                </button>
+              )}
+            </label>
 
-//               <label className='form__label'>
-//                 <span className='form__text'>Email</span>
-//                 <input
-//                   type='email'
-//                   value={values.email || ""}
-//                   name='email'
-//                   disabled={disableInput}
-//                   onInput={handleChange}
-//                   className='form__item form__item_el_email'
-//                   placeholder='Email'
-//                   required
-//                 />
-//               </label>
-//             </fieldset>
-//           </div>
+            {isFetchError && (
+              <ErrorText type='auth-button'>Что-то пошло не так...</ErrorText>
+            )}
+          </fieldset>
+        </form>
+      </div>
 
-//           <fieldset className='form__handlers '>
-//             <label className='form__label form__label_el_handlers'>
-//               <input type='submit' className='form__item invisible' />
+      <div className='form__footer form__footer_type_profile '>
+        <Link
+          to='/'
+          className='form__button form__button_out '
+          onClick={signOut}
+        >
+          Выйти из аккаунта
+        </Link>
+      </div>
+    </main>
+  );
+}
 
-//               {disableInput ? (
-//                 <button
-//                   type='button'
-//                   className='form__button  form__button_el_button form__button_type_edit form__text'
-//                   // onClick={clickUpdateButton}
-//                   // disabled={!isValid}
-//                   onClick={handleChangeData}
-//                 >
-//                   {" "}
-//                   Редактировать{" "}
-//                 </button>
-//               ) : (
-//                 <button
-//                   type='submit'
-//                   className='form__button 
-//                 form__button_el_button
-//                 form__button_type_edit
-//                  form__text'
-//                   disabled={!isValid}
-//                   // onSubmit={handleEditSubmit}
-//                   onSubmit={clickUpdateButton}
-//                 >
-//                   Сохранить
-//                 </button>
-//               )}
-//             </label>
-//           </fieldset>
-//         </form>
-//       </div>
-
-//       <div className='form__footer form__footer_type_profile '>
-//         <Link
-//           to='/'
-//           className='form__button form__button_out '
-//           onClick={signOut}
-//         >
-//           Выйти из аккаунта
-//         </Link>
-//       </div>
-//     </main>
-//     //   const currentUser = useContext(CurrentUserContext);
-//     //     console.log(currentUser.name)
-//     // const startValues = {
-//     //     name: currentUser.name,
-//     //     email: currentUser.email,
-
-//     //   };
-//     // const { values, isValid, handleChange, setIsValid } =
-//     //     useFormWithValidation(startValues);
-//     // const [disableInput, setDisableInput] = useState(true);
-
-//     //   // Проверить что данные изменились и валидны
-//     //   useEffect(() => {
-//     //     const isValidName = validation_params.regex.name.test(values.name);
-//     //     const isValidEmail = validation_params.regex.email.test(values.email);
-//     //     const isChangeName = values.name !== currentUser.name;
-//     //     const isChangeEmail = values.email !== currentUser.email;
-
-//     //     isValidName && isValidEmail && (isChangeName || isChangeEmail)
-//     //       ? setIsValid(true)
-//     //       : setIsValid(false);
-//     //   }, [values]);
-
-//     //   function clickUpdateButton() {
-//     //     handleUpdateUser(values).then(() => setIsValid(false));
-//     //   }
-
-//     //   function clickSignOutButton() {
-//     //     onSignOut();
-//     //   }
-//     ////////////////////////////////////////////////////////////////////////////////
-
-//     //////////////////////////////////////////////////////////////////////////////////////////
-//   );
-// }
-
-// export default Profile;
+export default Profile;

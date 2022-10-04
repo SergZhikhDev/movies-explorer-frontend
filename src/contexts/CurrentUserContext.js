@@ -1,25 +1,25 @@
-import React, {createContext,useState,useContext } from 'react';
+import {createContext } from 'react';
 
 export const  CurrentUserContext = createContext()
 
-const DataContext = createContext()
+// const DataContext = createContext()
 
-export const DataProvider = ({children}) => {
-  const [data, setData] = useState({});
+// export const DataProvider = ({children}) => {
+//   const [data, setData] = useState({});
 
-  const setValues = (values) => {
-    setData(prevData => ({
-      ...prevData,
-      ...values
-    }))
-  }
+//   const setValues = (values) => {
+//     setData(prevData => ({
+//       ...prevData,
+//       ...values
+//     }))
+//   }
 
-  return <DataContext.Provider value={{data, setValues}}>
-    {children}
-  </DataContext.Provider>
-}
+//   return <DataContext.Provider value={{data, setValues}}>
+//     {children}
+//   </DataContext.Provider>
+// }
 
-export const useData = () => useContext(DataContext)
+// export const useData = () => useContext(DataContext)
 
 
 // 8min

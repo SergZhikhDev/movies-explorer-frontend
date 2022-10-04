@@ -1,12 +1,18 @@
-import { useState } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useValidation } from "./useValidation";
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 export const useInputt = (initialValue, validations) => {
   const [value, setValue] = useState(initialValue);
+  const currentUser = useContext(CurrentUserContext);
+
   const [isDirty, setisDirty] = useState(false);
+  const [readyForUpdate, setReadyForUpdate] = useState(false);
+  const [needTwoChanges, setNeedTwoChanges] = useState("");
+
   const valid = useValidation(value, validations);
   const { errorsKit, inputValid } = valid;
-
+  const errorMessages = errorsKit.messages.message;
   const handleChange = (e) => {
     //убирает имеющиеся значения
     e.persist();
@@ -15,7 +21,6 @@ export const useInputt = (initialValue, validations) => {
   };
   const onClick = (e) => {
     setisDirty(false);
-    // setField(e.target.name);
     valid.onClack(e);
   };
 
@@ -23,10 +28,37 @@ export const useInputt = (initialValue, validations) => {
     setisDirty(true);
   };
 
+  useEffect(() => {
+    valid.inputValid &&
+    value !== currentUser.currentUser.name &&
+    value !== currentUser.currentUser.email
+      ? setReadyForUpdate(true)
+      : setReadyForUpdate(false);
+  }, [
+    currentUser.currentUser.email,
+    currentUser.currentUser.name,
+    currentUser.email,
+    currentUser.name,
+    valid.inputValid,
+    value,
+  ]);
+
+  useEffect(() => {
+    (value !== currentUser.currentUser.name &&
+      value === currentUser.currentUser.email) ||
+    (value === currentUser.currentUser.name &&
+      value !== currentUser.currentUser.email)
+      ? setNeedTwoChanges("Измените оба поля")
+      : setNeedTwoChanges("");
+  }, [currentUser.currentUser.email, currentUser.currentUser.name, value]);
+
   return {
+    errorMessages,
     value,
     errorsKit,
     inputValid,
+    readyForUpdate,
+    needTwoChanges,
     onBlur,
     handleChange,
     onClick,

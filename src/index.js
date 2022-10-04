@@ -2,18 +2,18 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom"; // импортируем BrowserRouter
 import "./index.css";
-import App from "./components/App/App";
+import {App} from "./components/App/App";
 import reportWebVitals from "./reportWebVitals";
-import { DataProvider } from "./contexts/CurrentUserContext";
+// import { DataProvider } from "./contexts/CurrentUserContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <DataProvider>
+    {/* <DataProvider> */}
       <BrowserRouter>
         <App />
       </BrowserRouter>
-    </DataProvider>
+    {/* </DataProvider> */}
   </React.StrictMode>
 );
 

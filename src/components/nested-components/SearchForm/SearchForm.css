@@ -19,11 +19,7 @@
 
 .search__movie {
   width: 100%;
-  font-family: inherit;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 28px;
-  line-height: 1.21;
+  font: normal 500 28px/1.21 Inter, Arial, sans-serif;
   background-color: transparent;
   color: #8b8b8b;
 }
