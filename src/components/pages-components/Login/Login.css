@@ -1,0 +1,16 @@
+.form__header {
+    display: flex;
+
+}
+
+.form__input-container_type_auth_type_login {
+    margin: 0;
+    padding-bottom: 186px
+}
+
+@media screen and (max-width: 769px) {
+    .form__container_type_auth {
+        width: 100%
+    }
+}
+
