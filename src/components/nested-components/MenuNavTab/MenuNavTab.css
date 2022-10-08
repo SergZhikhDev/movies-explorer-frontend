@@ -13,15 +13,11 @@
 .navtab__btns {
   justify-content: center;
   gap: 40px;
-
 }
-
 
 .navtab-btn:first-child {
   display: block;
-
 }
-
 
 .navtab-btn {
   margin: 0;
@@ -30,7 +26,6 @@
 }
 
 @media screen and (max-width: 321px) {
-
   .navtab-btn {
     margin-right: 24px;
     font-size: 11px;

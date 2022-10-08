@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext,useCallback } from "react";
 import { useValidation } from "./useValidation";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
@@ -13,11 +13,12 @@ export const useInputt = (initialValue, validations) => {
   const valid = useValidation(value, validations);
   const { errorsKit, inputValid } = valid;
   const errorMessages = errorsKit.messages.message;
+  
   const handleChange = (e) => {
     //убирает имеющиеся значения
     e.persist();
     setisDirty(true);
-    setValue(e.target.value);
+    setValue({ ...value, field: e.target.value });
   };
   const onClick = (e) => {
     setisDirty(false);
@@ -52,8 +53,18 @@ export const useInputt = (initialValue, validations) => {
       : setNeedTwoChanges("");
   }, [currentUser.currentUser.email, currentUser.currentUser.name, value]);
 
+  const callbackRef = useCallback((inputElement) => {
+    if (inputElement) {
+      inputElement.focus();
+    }
+  }, []);
+
+
+
+
   return {
     errorMessages,
+    callbackRef,
     value,
     errorsKit,
     inputValid,
@@ -62,6 +73,7 @@ export const useInputt = (initialValue, validations) => {
     onBlur,
     handleChange,
     onClick,
+    setValue,
     isDirty,
     ...valid,
   };
