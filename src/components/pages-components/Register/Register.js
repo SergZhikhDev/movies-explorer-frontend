@@ -33,7 +33,6 @@ export const Register = (props) => {
     }
     setPasswordType("password");
   };
-  //
   return (
     <main className='form register sfp_type_reg hp'>
       <div className='form__header form__header_type_auth'>
@@ -53,14 +52,16 @@ export const Register = (props) => {
                   className='form__item form__item_type_auth form__item_el_name form__item_el_name_type_auth'
                   onChange={name.handleChange}
                   value={name.value.field || ""}
-                  onClick={name.onClick}
-                  onTouchStart={name.onClick}
+                 onClick={name.onClick}
                   onBlur={name.onBlur}
+                  // onFocus={name.onClick}
                   name='name'
                   type='text'
                   autoComplete='off'
+                  autoFocus={true}
                   placeholder='Имя'
                   required
+                  // ref={name.callbackRef}
                 />
                 <hr className='form__line line line_form line_form_type_auth'></hr>
                 <span className='form__error' id='error-userName'>
@@ -79,11 +80,11 @@ export const Register = (props) => {
                   value={email.value.field || ""}
                   onClick={email.onClick}
                   onBlur={email.onBlur}
+                  onTouchStart={password.onClick}
                   name='email'
                   type='email'
                   autoComplete='off'
                   placeholder='Email'
-                  required
                 />
                 <hr className='form__line line line_form line_form_type_auth'></hr>
                 <span className='form__error' id='error-userEmail'>
@@ -106,7 +107,6 @@ export const Register = (props) => {
                   type={passwordType}
                   autoComplete='off'
                   placeholder='Password'
-                  required
                 />
                 <button
                   type='button'

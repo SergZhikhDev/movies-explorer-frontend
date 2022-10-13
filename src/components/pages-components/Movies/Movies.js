@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 
 import "./Movies.css";
-import Header from "../../nested-components/Header/Header";
+import { Header } from "../../nested-components/Header/Header";
 import Footer from "../../nested-components/Footer/Footer";
 import { SearchForm } from "../../nested-components/SearchForm/SearchForm";
 import { MoviesCardList } from "../../nested-components/MoviesCardList/MoviesCardList";
@@ -21,7 +21,9 @@ function Movies({
   requestLikeFilms,
   handleClickLikeButton,
   filmsLocal,
+  filtredFilmsLocal,
   searchQueryMoviesLocal,
+  path,
 }) {
   // Фильмы
   const [allFilms, setAllFilms] = useState(null);
@@ -57,7 +59,8 @@ function Movies({
   useEffect(() => {
     if (allFilms?.length && queryValues) {
       const films = filterFilms(allFilms, short_movie, queryValues);
-      saveFilmsLocal(films);
+
+      saveFiltredFilmsLocal(films);
       setFiltredFilms(films);
 
       films?.length
@@ -68,19 +71,21 @@ function Movies({
   }, [allFilms, queryValues]);
 
   // Отобразить фильмы
-  useEffect(() => {
+  useEffect((values) => {
+    searchFilms(values)
     if (filtredFilms?.length) {
       const films = setLike(filtredFilms, likedFilms);
-      setDisplayedFilms([...films.slice(0, startCountFilms)]);
+      setDisplayedFilms(films);
     }
     // eslint-disable-next-line
-  }, [filtredFilms, startCountFilms]);
+  }, [filtredFilms, startCountFilms,path]);
 
   function getLikeFilms() {
     startLoader();
     requestLikeFilms()
       .then((films) => {
         setLikedFilms(formatLikedFilms(films));
+        // setAllFilms(films);
         hideErrorMessage();
       })
       .catch(() => {
@@ -94,8 +99,9 @@ function Movies({
   function getAllFilms() {
     startLoader();
     requestAllFilms()
-      .then((films) => {
-        setAllFilms(films);
+      .then((allFilms) => {
+        setAllFilms(allFilms);
+        saveFilmsLocal(allFilms);
         hideErrorMessage();
       })
       .catch(() => {
@@ -106,8 +112,17 @@ function Movies({
       });
   }
 
+  function getAllLocalFilm() {
+    setAllFilms(filmsLocal.load());
+  }
+
   function searchFilms(values) {
-    if (!allFilms?.length) getAllFilms();
+    if (!!localStorage.allFilms) {
+      getAllLocalFilm();
+    } else {
+      getAllFilms();
+    }
+
     setQueryValues(values);
   }
 
@@ -132,11 +147,20 @@ function Movies({
   function saveFilmsLocal(films) {
     filmsLocal.save(films);
   }
+  function saveFiltredFilmsLocal(films) {
+    filtredFilmsLocal.save(films);
+  }
 
   function loadFilmsLocal() {
-    const localFilms = filmsLocal.load();
-    setFiltredFilms(localFilms);
+    // const localFilms = filmsLocal.load();
+    setAllFilms(filmsLocal.load());
   }
+
+
+  // function saveFiltredFilmsLocal() {
+  //   // const filtrFilmsLocal = filtredFilmsLocal.load();
+  //   setAllFilms(filtredFilmsLocal.load());
+  // }
 
   function addResizeEvent() {
     window.addEventListener("resize", setParamsCountFilms);
@@ -165,6 +189,7 @@ function Movies({
         <SearchForm
           searchFilms={searchFilms}
           searchQueryLocal={searchQueryMoviesLocal}
+          path={path}
         />
         <MoviesCardList
           films={displayedFilms}

@@ -3,18 +3,27 @@ import { Link } from "react-router-dom";
 
 import "./Profile.css";
 
-import Header from "../../nested-components/Header/Header";
+import { Header } from "../../nested-components/Header/Header";
 import { ErrorText } from "../../nested-components/ErrorText/ErrorText";
 import { CurrentUserContext } from "../../../contexts/CurrentUserContext";
 import { useInputt } from "../../../hooks/useInput";
 import { config } from "../../../utils/constants";
 
-export const Profile = ({ handleUpdateUser, currentUser, onSignOut }) => {
+export const Profile = ({ handleUpdateUser, onSignOut }) => {
   const { isFetchError } = useContext(CurrentUserContext);
   const [disableInput, setDisableInput] = useState(true);
   const name = useInputt("", config.name);
   const email = useInputt("", config.email);
-  const isValidForm = name.readyForUpdate && email.readyForUpdate;
+  const readyNmError =
+    name.nameReadyForUpdate &&
+    name.inputValid &&
+    name.errorMessages !== "Поле name должно быть заполнено!";
+  const readyEmError =
+    email.emailReadyForUpdate &&
+    email.inputValid &&
+    email.errorMessages !== "Поле email должно быть заполнено!";
+
+  const readyForUpdate = readyNmError || readyEmError;
 
   const handleUpdUser = (e) => {
     e.preventDefault();
@@ -27,7 +36,7 @@ export const Profile = ({ handleUpdateUser, currentUser, onSignOut }) => {
 
   function onSubmit(e) {
     e.preventDefault();
-    handleUpdateUser(name.value.field, email.value.field);
+    handleUpdateUser(name.userName, email.userEmail);
   }
 
   return (
@@ -40,7 +49,7 @@ export const Profile = ({ handleUpdateUser, currentUser, onSignOut }) => {
         <Header />
         <div className='form__main form__main_type_profile '>
           <div className='form__main-container'>
-            <h3 className=' form__title'>{`Привет, ${currentUser.name}!`}</h3>
+            <h3 className=' form__title'>{`Привет, ${name.userName}!`}</h3>
             <fieldset className=' form__input-container form__input-container_ctrl_texts'>
               <label
                 className='
@@ -50,22 +59,21 @@ export const Profile = ({ handleUpdateUser, currentUser, onSignOut }) => {
                 {disableInput ? (
                   <input
                     className='form__item form__item_el_name'
-                    placeholder={currentUser.name}
-                    value={name.value.field || ""}
+                    placeholder={name.userName}
                     disabled={disableInput}
+                    value=''
+                    onChange={name.handleProfileChange}
                   />
                 ) : (
                   <input
                     className='form__item form__item_el_name'
-                    onChange={name.handleChange}
-                    value={name.value.field || ""}
-                    onClick={name.onClick}
-                    onBlur={name.onBlur}
+                    value={name.userName || ""}
+                    onChange={name.handleProfileChange}
+                    // onBlur={name.onBlur}
                     name='name'
                     type='text'
                     autoComplete='off'
-                    placeholder={currentUser.name}
-                    required
+                    placeholder={name.userName}
                     ref={name.callbackRef}
                   />
                 )}
@@ -74,35 +82,54 @@ export const Profile = ({ handleUpdateUser, currentUser, onSignOut }) => {
 
               <label className='form__label'>
                 <span className='form__text'>Email</span>
-                <input
-                  className='form__item form__item_el_email'
-                  onChange={email.handleChange}
-                  value={email.value.field || ""}
-                  onClick={email.onClick}
-                  onBlur={email.onBlur}
-                  name='email'
-                  type='email'
-                  autoComplete='off'
-                  placeholder={currentUser.email}
-                  required
-                  disabled={disableInput}
-                />
+                {disableInput ? (
+                  <input
+                    className='form__item form__item_el_email'
+                    placeholder={email.userEmail}
+                    disabled={disableInput}
+                    value=''
+                    onChange={email.handleProfileChange}
+                  />
+                ) : (
+                  <input
+                    className='form__item form__item_el_email'
+                    value={email.userEmail || ""}
+                    onChange={email.handleProfileChange}
+                    // onBlur={email.onBlur}
+                    name='email'
+                    type='email'
+                    autoComplete='off'
+                    placeholder={email.userEmail}
+                  />
+                )}
               </label>
             </fieldset>
           </div>
 
           <fieldset className='form__handlers '>
             <span className='form__errors'>
-              {name.isDirty && (
-                <ErrorText type='auth'>{name.errorMessages}</ErrorText>
+              {!readyForUpdate && (
+               ( name.isDirty||
+                email.isDirty )&&
+               (name.inputValid ||
+                email.inputValid )&&
+            
+                <ErrorText type='auth-button'>
+                 Данные не изменились, измените хотя бы одно поле.
+                </ErrorText>
               )}
+              {
+                name.errorMessages !== "Поле  должно быть заполнено!" &&(
+                <ErrorText type='auth-button'>{name.errorMessages}</ErrorText>)
+              }
               {email.isDirty && (
-                <ErrorText type='auth'>{email.errorMessages}</ErrorText>
+                email.errorMessages !== "Поле  должно быть заполнено!"&&(
+                <ErrorText type='auth-button'>{email.errorMessages}</ErrorText>)
               )}
 
-              {email.needTwoChanges && (
-                <ErrorText type='auth'>{email.needTwoChanges}</ErrorText>
-              )}
+              {/* {email.needTwoChanges && (
+                <ErrorText type='auth'>3{email.needTwoChanges}</ErrorText>
+              )} */}
             </span>
             <label className='form__label form__label_el_handlers'>
               <input type='submit' className='form__item invisible' />
@@ -118,7 +145,7 @@ export const Profile = ({ handleUpdateUser, currentUser, onSignOut }) => {
               ) : (
                 <button
                   type='submit'
-                  disabled={!isValidForm}
+                  disabled={!readyForUpdate}
                   className='form__button form__button_el_button form__button_type_edit form__text'
                 >
                   Сохранить
