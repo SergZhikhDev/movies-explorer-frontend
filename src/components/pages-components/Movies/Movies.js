@@ -71,7 +71,8 @@ function Movies({
   }, [allFilms, queryValues]);
 
   // Отобразить фильмы
-  useEffect((values) => {
+ // Отобразить фильмы
+ useEffect((values) => {
     searchFilms(values)
     if (filtredFilms?.length) {
       const films = setLike(filtredFilms, likedFilms);
@@ -217,3 +218,6 @@ function Movies({
 }
 
 export default Movies;
+
+
+
