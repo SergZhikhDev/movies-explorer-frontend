@@ -8,7 +8,6 @@ import {
 } from "react-router-dom";
 
 import "./App.css";
-import { Form } from "../pages-components/Form/Form";
 import { Main } from "../pages-components/Main/Main";
 import Login from "../pages-components/Login/Login";
 import Movies from "../pages-components/Movies/Movies";
@@ -237,12 +236,7 @@ export const App = () => {
             />
           </Route>
 
-          <Route path='/form'>
-            <Form 
-                handleRegister={handleRegister}
-                isPreloader={isPreloader}
-            />
-          </Route>
+      
 
           <Route path='*'>
             <NotFound />
