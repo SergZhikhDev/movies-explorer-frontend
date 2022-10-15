@@ -11,25 +11,25 @@ import { filterFilms } from "../../../utils/filterFilms";
 import { reports, short_movie } from "../../../utils/constants";
 
 export const SavedMovies = ({
-  requestLikeFilms,
+  requestLikeSavedFilms,
   handleClickLikeButton,
-  filmsLocal,
+  isLoading,
   searchQuerySavedMoviesLocal,
   path,
+  token,
 }) => {
   const [likedFilms, setLikedFilms] = useState(null);
   const [displayedFilms, setDisplayedFilms] = useState(null);
 
   const [errorMessage, setErrorMessage] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
-    getLikeFilms();
-    // eslint-disable-next-line
-  }, []); // ничего не добавлятьб будет ошибка CORS
+    getLikeSavedFilms();
 
-  function getLikeFilms() {
-    startLoader();
-    requestLikeFilms()
+    // eslint-disable-next-line
+  }, []);
+
+  function getLikeSavedFilms() {
+    requestLikeSavedFilms()
       .then((films) => {
         setAllFilms(films);
         hideErrorMessage();
@@ -37,9 +37,7 @@ export const SavedMovies = ({
       .catch(() => {
         showErrorMessage(reports.apiMessages.error);
       })
-      .finally(() => {
-        stopLoader();
-      });
+      .finally(() => {});
   }
 
   function searchFilms(values) {
@@ -60,14 +58,6 @@ export const SavedMovies = ({
   function setAllFilms(films) {
     setLikedFilms(films);
     setDisplayedFilms(films);
-  }
-
-  function startLoader() {
-    setIsLoading(true);
-  }
-
-  function stopLoader() {
-    setIsLoading(false);
   }
 
   function showErrorMessage(message) {
