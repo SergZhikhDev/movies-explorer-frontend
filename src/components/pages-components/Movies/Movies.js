@@ -1,5 +1,4 @@
-import React from "react";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import "./Movies.css";
 import { Header } from "../../nested-components/Header/Header";
@@ -7,7 +6,7 @@ import Footer from "../../nested-components/Footer/Footer";
 import { SearchForm } from "../../nested-components/SearchForm/SearchForm";
 import { MoviesCardList } from "../../nested-components/MoviesCardList/MoviesCardList";
 import { filterFilms } from "../../../utils/filterFilms";
-import {  setLike } from "../../../utils/likes";
+import { setLike } from "../../../utils/likes";
 import {
   count,
   reports,
@@ -28,7 +27,6 @@ function Movies({
   searchQueryMoviesLocal,
 }) {
   const [allFilms, setAllFilms] = useState(null);
-  // const [likedFilms, setLikedFilms] = useState(null);
   const [queryValues, setQueryValues] = useState(null);
   const [filtredFilms, setFiltredFilms] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
@@ -158,7 +156,7 @@ function Movies({
   return (
     <>
       <Header />
-      <main className='movies sp hp'>
+      <main className='movies sp'>
         <SearchForm
           path={path}
           isLoading={isLoading}

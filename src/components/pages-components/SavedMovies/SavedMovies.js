@@ -1,5 +1,4 @@
-import React from "react";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import "./SavedMovies.css";
 import { Header } from "../../nested-components/Header/Header";
@@ -71,7 +70,7 @@ export const SavedMovies = ({
   return (
     <>
       <Header />
-      <main className='saved-movies sp hp'>
+      <main className='saved-movies sp'>
         <SearchForm
           path={path}
           isLoading={isLoading}

@@ -34,12 +34,12 @@ export const Register = (props) => {
     setPasswordType("password");
   };
   return (
-    <form className='form register sfp_type_reg hp' onSubmit={onSubmit}>
+    <form className='form register sfp_type_reg' onSubmit={onSubmit}>
       <div className='form__header form__header_type_auth'>
         <Logo />
       </div>
       <div className='form__container form__container_type_auth'>
-        <main className='form__admin form__admin_type_auth'>
+        <div className='form__admin form__admin_type_auth'>
           <div className='form__container form__container_type_auth'>
             <h3 className='form__heading form__heading_type_auth'>
               Добро пожаловать!
@@ -131,7 +131,8 @@ export const Register = (props) => {
                 <button
                   type='submit'
                   className='form__button form__button_el_button form__text'
-                  disabled={props.isLoading||
+                  disabled={
+                    props.isLoading ||
                     !name.inputValid ||
                     !email.inputValid ||
                     !password.inputValid
@@ -153,7 +154,7 @@ export const Register = (props) => {
               Войти{" "}
             </Link>
           </div>
-        </main>
+        </div>
       </div>
     </form>
   );
